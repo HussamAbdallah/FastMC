@@ -1,0 +1,536 @@
+* NGSPICE file created from TOP.ext - technology: gf180mcuD
+
+.subckt TOP DEBUG VDD PLL_FREERUN VSS PLL_CLK_OUT PLL_DISABLE PLL_REF_CLK PLL_VCTRL
+X0 a_23444_3994 a_22864_4398 VSS.t327 VSS.t326 nfet_06v0 ad=0.1312p pd=1.14u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X1 VDD.t182 a_22948_2038 a_22864_2486 VDD.t181 pfet_06v0 ad=0.4972p pd=3.14u as=0.2938p ps=1.65u w=1.13u l=0.5u
+X2 a_23099_4907 a_23011_4951 VSS.t252 VSS.t251 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X3 a_24355_n1338.t27 a_23423_n1258 VSS.t250 VSS.t249 nfet_06v0 ad=0.1118p pd=0.95u as=0.1118p ps=0.95u w=0.43u l=0.6u
+X4 a_24355_n1338.t36 a_27899_438.t13 PLL_CLK_OUT.t28 VSS.t254 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X5 a_5840_15093.t9 a_5840_7613.t0 cap_mim_2f0_m4m5_noshield c_width=11u c_length=11u
+X6 VSS.t85 a_23455_217 a_23407_261 VSS.t40 nfet_06v0 ad=0.2637p pd=1.825u as=43.199997f ps=0.6u w=0.36u l=0.6u
+X7 a_22864_4398 a_22948_3950 a_22884_3994 VSS.t153 nfet_06v0 ad=0.3608p pd=2.52u as=0.1312p ps=1.14u w=0.82u l=0.6u
+X8 a_24355_n1338.t37 a_27899_438.t14 PLL_CLK_OUT.t27 VSS.t255 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X9 PLL_CLK_OUT.t26 a_27899_438.t15 a_24355_n1338.t38 VSS.t256 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X10 VDD.t329 a_22388_2038.t2 a_22304_2486 VDD.t328 pfet_06v0 ad=0.4972p pd=3.14u as=0.2938p ps=1.65u w=1.13u l=0.5u
+X11 DEBUG.t25 PLL_FREERUN.t0 PLL_VCTRL.t15 VSS.t259 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X12 a_n2908_12013 a_1220_12453 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X13 VSS.t61 a_31031_1644 a_30943_1688 VSS.t60 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X14 a_24891_4907 a_24803_4951 VSS.t348 VSS.t347 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X15 PLL_CLK_OUT.t34 PLL_DISABLE.t0 a_24355_n1338.t47 VDD.t327 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X16 a_5840_15093.t9 a_5840_7613.t0 cap_mim_2f0_m4m5_noshield c_width=11u c_length=11u
+X17 a_n15085_2072.t19 PLL_FREERUN.t1 DEBUG.t29 VDD.t266 pfet_03v3 ad=0.78p pd=3.52u as=1.95p ps=7.3u w=3u l=0.33u
+X18 a_22539_3430 a_22451_3522 VDD.t176 VDD.t175 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X19 a_n558_2704.t1 a_11009_2840 a_14657_n1138 VSS.t196 nfet_03v3 ad=0.5124p pd=2.9u as=0.5124p ps=2.9u w=0.84u l=0.33u
+X20 DEBUG.t24 PLL_FREERUN.t2 PLL_VCTRL.t14 VSS.t268 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X21 a_n15085_2072.t32 a_n17351_68.t2 DEBUG.t62 VSS.t267 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X22 a_22203_n358.t3 a_21855_n1258 VSS.t57 VSS.t56 nfet_06v0 ad=0.1183p pd=0.975u as=0.234325p ps=1.94u w=0.455u l=0.6u
+X23 VSS.t124 a_23455_1567 a_23407_1611 VSS.t123 nfet_06v0 ad=0.2637p pd=1.825u as=43.199997f ps=0.6u w=0.36u l=0.6u
+X24 a_n15085_2072.t41 VSS.t188 cap_mim_2f0_m4m5_noshield c_width=10u c_length=5u
+X25 a_21855_4398 a_21755_4018 VSS.t178 VSS.t177 nfet_06v0 ad=0.2112p pd=1.84u as=0.2112p ps=1.84u w=0.48u l=0.6u
+X26 PLL_VCTRL.t31 a_n17351_68.t3 DEBUG.t63 VDD.t264 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X27 PLL_VCTRL.t32 a_n17351_68.t4 DEBUG.t64 VDD.t265 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X28 DEBUG.t52 a_n17351_68.t5 PLL_VCTRL.t24 VDD.t183 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X29 a_25265_7733 a_24755_6933 a_5840_15093.t3 VDD.t128 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X30 VSS.t248 a_23423_n1258 a_24355_n1338.t26 VSS.t247 nfet_06v0 ad=0.1118p pd=0.95u as=0.1118p ps=0.95u w=0.43u l=0.6u
+X31 a_22203_n358.t2 a_21855_n1258 VSS.t55 VSS.t54 nfet_06v0 ad=0.1183p pd=0.975u as=0.1183p ps=0.975u w=0.455u l=0.6u
+X32 DEBUG.t53 a_n17351_68.t6 PLL_VCTRL.t25 VDD.t184 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X33 VSS.t211 a_n4208_n141.t3 a_n671_n1138 VSS.t210 nfet_03v3 ad=0.2646p pd=2.1u as=0.2646p ps=2.1u w=0.42u l=0.33u
+X34 VDD.t201 a_n8471_219.t5 a_3149_2840 VDD.t200 pfet_03v3 ad=0.585p pd=3.1u as=0.585p ps=3.1u w=0.9u l=0.33u
+X35 a_21755_1082 a_24383_1567 VSS.t342 VSS.t341 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X36 PLL_VCTRL.t26 a_n17351_68.t7 DEBUG.t54 VDD.t185 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X37 a_27491_1710 PLL_REF_CLK.t0 VSS.t147 VSS.t146 nfet_06v0 ad=0.1584p pd=1.6u as=0.151p ps=1.185u w=0.36u l=0.6u
+X38 a_24355_n1338.t8 PLL_DISABLE.t1 PLL_CLK_OUT.t3 VDD.t112 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X39 VDD.t83 a_23620_8319.t3 a_23691_7733 VDD.t82 pfet_03v3 ad=1.3p pd=5.3u as=0.52p ps=2.52u w=2u l=0.33u
+X40 DEBUG.t28 PLL_FREERUN.t3 a_n15085_2072.t18 VDD.t267 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X41 VSS.t41 a_23455_n345 a_23407_n301 VSS.t40 nfet_06v0 ad=0.2637p pd=1.825u as=43.199997f ps=0.6u w=0.36u l=0.6u
+X42 VSS.t143 a_n8537_n1530.t4 a_n8659_n1230 VSS.t142 nfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X43 a_22987_3430 a_22899_3522 VDD.t241 VDD.t240 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X44 a_25675_477 a_25587_574 VSS.t30 VSS.t29 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X45 VDD.t209 a_22203_n358.t8 a_22115_253.t1 VDD.t208 pfet_06v0 ad=0.2249p pd=1.385u as=0.3806p ps=2.61u w=0.865u l=0.5u
+X46 a_7177_2840 a_3345_2840 a_6981_2840 VDD.t80 pfet_03v3 ad=1.17p pd=4.9u as=1.17p ps=4.9u w=1.8u l=0.33u
+X47 VDD.t77 a_23508_2038 a_22948_2038 VDD.t76 pfet_06v0 ad=0.4972p pd=3.14u as=0.2938p ps=1.65u w=1.13u l=0.5u
+X48 a_27014_14933 a_24866_11400 VSS.t68 ppolyf_u r_width=0.8u r_length=22u
+X49 a_n15085_2072.t42 VSS.t189 cap_mim_2f0_m4m5_noshield c_width=10u c_length=5u
+X50 DEBUG.t68 a_n17351_68.t8 PLL_VCTRL.t33 VDD.t272 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X51 VDD.t47 a_21855_n1258 a_22203_n358.t7 VDD.t46 pfet_06v0 ad=0.3782p pd=1.84u as=0.3782p ps=1.84u w=1.22u l=0.5u
+X52 a_22948_3950 a_23508_2038 a_23444_3994 VSS.t84 nfet_06v0 ad=0.3608p pd=2.52u as=0.1312p ps=1.14u w=0.82u l=0.6u
+X53 a_5840_15093.t9 a_5840_7613.t0 cap_mim_2f0_m4m5_noshield c_width=11u c_length=11u
+X54 a_26795_6933 a_n8537_93.t3 a_25265_6933 VSS.t98 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X55 PLL_VCTRL.t34 a_n17351_68.t9 DEBUG.t69 VDD.t273 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X56 a_24355_n1338.t41 a_27899_438.t16 PLL_CLK_OUT.t25 VSS.t285 nfet_03v3 ad=0.65p pd=3.3u as=0.26p ps=1.52u w=1u l=0.33u
+X57 a_1220_13333 a_5840_13333 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X58 PLL_CLK_OUT.t24 a_27899_438.t17 a_24355_n1338.t42 VSS.t286 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X59 PLL_CLK_OUT.t4 PLL_DISABLE.t2 a_24355_n1338.t9 VDD.t113 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X60 a_24355_n1338.t43 a_27899_438.t18 PLL_CLK_OUT.t23 VSS.t287 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X61 a_n15085_2072.t36 a_n17351_68.t10 DEBUG.t70 VSS.t284 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X62 VDD.t257 a_21394_11355.t16 a_21394_11355.t17 VDD.t256 pfet_03v3 ad=1.456p pd=6.12u as=1.456p ps=6.12u w=5.6u l=0.56u
+X63 a_24383_217 a_24090_629 VDD.t116 VDD.t115 pfet_06v0 ad=0.352p pd=2.48u as=0.23p ps=1.54u w=0.8u l=0.5u
+X64 DEBUG.t77 a_n17351_68.t11 PLL_VCTRL.t38 VDD.t342 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X65 a_1712_14653 a_5840_15093.t4 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X66 VSS.t313 a_16431_6193 VSS.t183 ppolyf_u r_width=0.8u r_length=0.13m
+X67 a_26049_6873 a_25369_6873 VDD.t277 VDD.t276 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X68 a_23407_1611 a_22527_1197 a_23083_1611 VSS.t67 nfet_06v0 ad=43.199997f pd=0.6u as=0.207p ps=1.51u w=0.36u l=0.6u
+X69 a_21643_3430 a_21555_3522 VDD.t52 VDD.t51 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X70 a_n8471_219.t0 a_n8537_93.t4 a_n8659_n1230 VSS.t99 nfet_03v3 ad=0.52p pd=2.52u as=1.22p ps=5.22u w=2u l=0.33u
+X71 PLL_CLK_OUT.t5 PLL_DISABLE.t3 a_24355_n1338.t10 VDD.t114 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X72 a_22864_4398 a_22304_4398 VDD.t28 VDD.t27 pfet_06v0 ad=0.2938p pd=1.65u as=0.4972p ps=3.14u w=1.13u l=0.5u
+X73 a_21506_13215.t9 a_21394_11355.t18 VDD.t259 VDD.t258 pfet_03v3 ad=1.456p pd=6.12u as=1.456p ps=6.12u w=5.6u l=0.56u
+X74 a_23083_1611 a_22963_1518 a_22915_1611 VSS.t308 nfet_06v0 ad=0.207p pd=1.51u as=43.199997f ps=0.6u w=0.36u l=0.6u
+X75 DEBUG.t27 PLL_FREERUN.t4 a_n15085_2072.t17 VDD.t194 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X76 a_n2908_11133 a_1220_11573 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X77 VSS.t346 a_24675_7463 a_24755_6933 VSS.t345 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X78 a_22304_4398 a_21855_4398 VDD.t317 VDD.t316 pfet_06v0 ad=0.2938p pd=1.65u as=0.4972p ps=3.14u w=1.13u l=0.5u
+X79 PLL_VCTRL.t39 a_n17351_68.t12 DEBUG.t78 VDD.t343 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X80 DEBUG.t79 a_n17351_68.t13 a_n15085_2072.t40 VSS.t335 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X81 a_24355_n1338.t35 a_23423_n1258 VDD.t236 VDD.t235 pfet_06v0 ad=0.4392p pd=1.94u as=0.3172p ps=1.74u w=1.22u l=0.5u
+X82 VDD.t203 a_n8471_219.t6 a_18477_2840 VDD.t202 pfet_03v3 ad=0.585p pd=3.1u as=0.585p ps=3.1u w=0.9u l=0.33u
+X83 VDD.t220 a_22864_2486 a_22388_2038.t1 VDD.t219 pfet_06v0 ad=0.2561p pd=1.505u as=0.2561p ps=1.505u w=0.985u l=0.5u
+X84 VDD.t234 a_23423_n1258 a_24355_n1338.t34 VDD.t233 pfet_06v0 ad=0.5368p pd=3.32u as=0.4392p ps=1.94u w=1.22u l=0.5u
+X85 DEBUG.t74 a_n17351_68.t14 PLL_VCTRL.t35 VDD.t324 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X86 VSS.t246 a_23423_n1258 a_24355_n1338.t25 VSS.t245 nfet_06v0 ad=0.1118p pd=0.95u as=0.1118p ps=0.95u w=0.43u l=0.6u
+X87 a_22959_n669 a_22527_n715 VDD.t50 VDD.t49 pfet_06v0 ad=53.999996f pd=0.66u as=0.4554p ps=3.25u w=0.36u l=0.5u
+X88 VSS.t111 a_25675_n394 a_25587_n302 VSS.t29 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X89 a_23083_261 a_22963_217 a_22915_261 VSS.t14 nfet_06v0 ad=0.207p pd=1.51u as=43.199997f ps=0.6u w=0.36u l=0.6u
+X90 VDD.t247 a_21394_11355.t19 a_21506_13215.t8 VDD.t246 pfet_03v3 ad=1.456p pd=6.12u as=1.456p ps=6.12u w=5.6u l=0.56u
+X91 a_23407_n301 a_22527_n715 a_23083_n301 VSS.t59 nfet_06v0 ad=43.199997f pd=0.6u as=0.207p ps=1.51u w=0.36u l=0.6u
+X92 a_21855_1126 a_21755_1082 VSS.t301 VSS.t299 nfet_06v0 ad=0.2112p pd=1.84u as=0.2112p ps=1.84u w=0.48u l=0.6u
+X93 a_21855_n1258 a_n558_2704.t2 VSS.t312 VSS.t311 nfet_06v0 ad=0.51425p pd=2.91u as=0.2662p ps=2.09u w=0.605u l=0.6u
+X94 PLL_VCTRL.t36 a_n17351_68.t15 DEBUG.t75 VDD.t325 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X95 VSS.t145 a_n8537_n1530.t5 a_21891_6933 VSS.t144 nfet_03v3 ad=0.61p pd=3.22u as=0.26p ps=1.52u w=1u l=0.33u
+X96 a_22959_1243 a_22527_1197 VDD.t58 VDD.t57 pfet_06v0 ad=53.999996f pd=0.66u as=0.4554p ps=3.25u w=0.36u l=0.5u
+X97 a_n15085_2072.t43 VSS.t191 cap_mim_2f0_m4m5_noshield c_width=10u c_length=5u
+X98 PLL_VCTRL.t37 a_n17351_68.t16 DEBUG.t76 VDD.t326 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X99 a_25265_7733 a_22941_7733.t3 a_25095_7733 VDD.t64 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X100 a_24355_n1338.t46 PLL_DISABLE.t4 PLL_CLK_OUT.t33 VDD.t283 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X101 a_5840_15093.t9 a_5840_7613.t0 cap_mim_2f0_m4m5_noshield c_width=11u c_length=11u
+X102 a_23083_n301 a_21855_1126 a_22915_n301 VSS.t14 nfet_06v0 ad=0.207p pd=1.51u as=43.199997f ps=0.6u w=0.36u l=0.6u
+X103 DEBUG.t55 a_n17351_68.t17 PLL_VCTRL.t27 VDD.t196 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X104 VSS.t193 a_n8537_n1530.t6 a_n8659_n1230 VSS.t192 nfet_03v3 ad=0.52p pd=2.52u as=1.22p ps=5.22u w=2u l=0.33u
+X105 a_n15085_2072.t29 a_n17351_68.t18 DEBUG.t56 VSS.t224 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X106 a_22941_7733.t2 a_n8537_93.t5 a_22955_6933 VSS.t138 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X107 a_n15085_2072.t16 PLL_FREERUN.t5 DEBUG.t26 VDD.t195 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X108 a_24383_n345 a_24090_n669 VDD.t30 VDD.t29 pfet_06v0 ad=0.352p pd=2.48u as=0.23p ps=1.54u w=0.8u l=0.5u
+X109 a_23427_629 a_22115_253.t2 a_23083_261 VDD.t102 pfet_06v0 ad=43.199997f pd=0.6u as=0.1872p ps=1.4u w=0.36u l=0.5u
+X110 a_21755_1082 a_24383_1567 VDD.t347 VDD.t92 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X111 a_22527_1197 a_22115_1610.t2 VSS.t20 VSS.t19 nfet_06v0 ad=0.1782p pd=1.69u as=0.1053p ps=0.925u w=0.405u l=0.6u
+X112 VDD.t210 a_22203_n358.t9 a_22115_1610.t1 VDD.t208 pfet_06v0 ad=0.2249p pd=1.385u as=0.3806p ps=2.61u w=0.865u l=0.5u
+X113 a_21855_n1258 a_n558_2704.t3 VDD.t172 VDD.t171 pfet_06v0 ad=0.2542p pd=1.44u as=0.3608p ps=2.52u w=0.82u l=0.5u
+X114 PLL_CLK_OUT.t22 a_27899_438.t19 a_24355_n1338.t11 VSS.t165 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X115 a_21506_13215.t7 a_21394_11355.t20 VDD.t249 VDD.t248 pfet_03v3 ad=1.456p pd=6.12u as=1.456p ps=6.12u w=5.6u l=0.56u
+X116 a_24355_n1338.t12 a_27899_438.t20 PLL_CLK_OUT.t21 VSS.t166 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X117 PLL_CLK_OUT.t20 a_27899_438.t21 a_24355_n1338.t13 VSS.t167 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X118 DEBUG.t23 PLL_FREERUN.t6 PLL_VCTRL.t7 VSS.t223 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X119 a_24355_n1338.t24 a_23423_n1258 VSS.t244 VSS.t243 nfet_06v0 ad=0.1118p pd=0.95u as=0.1118p ps=0.95u w=0.43u l=0.6u
+X120 a_22527_574 a_22115_253.t3 VDD.t104 VDD.t103 pfet_06v0 ad=0.3806p pd=2.61u as=0.2249p ps=1.385u w=0.865u l=0.5u
+X121 a_23083_n301 a_21855_1126 a_22959_n669 VDD.t10 pfet_06v0 ad=0.1872p pd=1.4u as=53.999996f ps=0.66u w=0.36u l=0.5u
+X122 a_26115_6933 a_26049_6873 a_25265_6933 VSS.t115 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X123 VSS.t91 a_22091_3430 a_22003_3522 VSS.t90 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X124 a_23407_261 a_22527_574 a_23083_261 VSS.t59 nfet_06v0 ad=43.199997f pd=0.6u as=0.207p ps=1.51u w=0.36u l=0.6u
+X125 DEBUG.t39 PLL_FREERUN.t7 a_n15085_2072.t15 VDD.t198 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X126 a_23083_1611 a_22963_1518 a_22959_1243 VDD.t59 pfet_06v0 ad=0.1872p pd=1.4u as=53.999996f ps=0.66u w=0.36u l=0.5u
+X127 a_22915_1611 a_22115_1610.t3 VSS.t119 VSS.t118 nfet_06v0 ad=43.199997f pd=0.6u as=0.1584p ps=1.6u w=0.36u l=0.6u
+X128 a_22948_3950 a_22864_4398 VDD.t335 VDD.t334 pfet_06v0 ad=0.2938p pd=1.65u as=0.4972p ps=3.14u w=1.13u l=0.5u
+X129 a_22203_n358.t6 a_21855_n1258 VDD.t45 VDD.t44 pfet_06v0 ad=0.3782p pd=1.84u as=0.428p ps=2.02u w=1.22u l=0.5u
+X130 a_23435_3430 a_23347_3522 VDD.t292 VDD.t291 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+D0 PLL_DISABLE.t5 VDD.t284 pn_6p0 pj=1.86u area=0.2052p
+X131 PLL_VCTRL.t28 a_n17351_68.t19 DEBUG.t57 VDD.t197 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X132 DEBUG.t58 a_n17351_68.t20 a_n15085_2072.t30 VSS.t257 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X133 VDD.t218 a_22864_2486 a_23508_2038 VDD.t217 pfet_06v0 ad=0.2197p pd=1.365u as=0.2197p ps=1.365u w=0.845u l=0.5u
+X134 a_24207_4398 a_22304_4398 VSS.t35 VSS.t34 nfet_06v0 ad=0.2112p pd=1.84u as=0.2112p ps=1.84u w=0.48u l=0.6u
+X135 a_23455_217 a_23083_261 VSS.t13 VSS.t12 nfet_06v0 ad=93.59999f pd=0.88u as=0.2637p ps=1.825u w=0.36u l=0.6u
+X136 VDD.t243 a_n8471_219.t3 a_n8471_219.t4 VDD.t242 pfet_03v3 ad=0.585p pd=3.1u as=0.585p ps=3.1u w=0.9u l=0.33u
+X137 a_25265_7733 a_24675_7463 a_26115_6933 VDD.t355 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X138 a_23423_n1258 a_22203_n358.t10 VSS.t230 VSS.t229 nfet_06v0 ad=0.1053p pd=0.925u as=0.1782p ps=1.69u w=0.405u l=0.6u
+X139 PLL_VCTRL.t6 PLL_FREERUN.t8 DEBUG.t22 VSS.t225 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X140 a_22203_n358.t5 a_21855_n1258 VDD.t43 VDD.t42 pfet_06v0 ad=0.3782p pd=1.84u as=0.3782p ps=1.84u w=1.22u l=0.5u
+X141 a_24355_n1338.t33 a_23423_n1258 VDD.t232 VDD.t231 pfet_06v0 ad=0.4392p pd=1.94u as=0.3172p ps=1.74u w=1.22u l=0.5u
+X142 VDD.t345 a_25675_477 a_25587_574 VDD.t318 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X143 a_23423_n1258 a_22203_n358.t11 VSS.t202 VSS.t201 nfet_06v0 ad=0.1782p pd=1.69u as=0.1053p ps=0.925u w=0.405u l=0.6u
+X144 a_22915_n301 a_22115_n302.t2 VSS.t298 VSS.t151 nfet_06v0 ad=43.199997f pd=0.6u as=0.1584p ps=1.6u w=0.36u l=0.6u
+X145 VDD.t79 a_23455_217 a_23427_629 VDD.t78 pfet_06v0 ad=0.1044p pd=0.94u as=43.199997f ps=0.6u w=0.36u l=0.5u
+X146 a_n15085_2072.t44 VSS.t319 cap_mim_2f0_m4m5_noshield c_width=10u c_length=5u
+X147 a_23691_7733 a_23620_8319.t4 VDD.t85 VDD.t84 pfet_03v3 ad=0.52p pd=2.52u as=1.3p ps=5.3u w=2u l=0.33u
+X148 a_n2908_7613 VSS.t160 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X149 VSS.t195 a_n8537_n1530.t7 a_22955_6933 VSS.t194 nfet_03v3 ad=0.4p pd=1.8u as=0.26p ps=1.52u w=1u l=0.33u
+X150 a_n15085_2072.t14 PLL_FREERUN.t9 DEBUG.t38 VDD.t199 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X151 a_22388_3950.t0 a_23508_2038 VDD.t75 VDD.t74 pfet_06v0 ad=0.4334p pd=2.85u as=0.2561p ps=1.505u w=0.985u l=0.5u
+X152 a_n2908_10253 a_1220_10693 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X153 a_23883_3430 a_23795_3522 VDD.t3 VDD.t2 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X154 a_24655_4398 a_24207_4398 VSS.t24 VSS.t23 nfet_06v0 ad=0.2112p pd=1.84u as=0.2112p ps=1.84u w=0.48u l=0.6u
+X155 a_n2908_9373 a_1220_8933 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X156 VDD.t314 a_21755_4907 a_21667_4951 VDD.t313 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X157 PLL_CLK_OUT.t19 a_27899_438.t22 a_24355_n1338.t3 VSS.t135 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X158 a_21855_4398 a_21755_4018 VDD.t124 VDD.t123 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X159 a_22388_3950.t0 a_24655_4398 VDD.t66 VDD.t65 pfet_06v0 ad=0.2561p pd=1.505u as=0.4334p ps=2.85u w=0.985u l=0.5u
+X160 DEBUG.t21 PLL_FREERUN.t10 PLL_VCTRL.t17 VSS.t317 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X161 a_21755_477 a_21667_574 VSS.t76 VSS.t43 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X162 a_11009_2840 a_7177_2840 a_10813_2840 VDD.t69 pfet_03v3 ad=1.17p pd=4.9u as=1.17p ps=4.9u w=1.8u l=0.33u
+X163 VDD.t166 a_n8471_219.t7 a_n683_2840 VDD.t165 pfet_03v3 ad=0.585p pd=3.1u as=0.585p ps=3.1u w=0.9u l=0.33u
+X164 a_24675_7463 a_22388_3950.t2 VSS.t73 VSS.t72 nfet_06v0 ad=0.2112p pd=1.84u as=0.2112p ps=1.84u w=0.48u l=0.6u
+X165 PLL_VCTRL.t29 a_n17351_68.t21 DEBUG.t59 VDD.t238 pfet_03v3 ad=0.78p pd=3.52u as=1.95p ps=7.3u w=3u l=0.33u
+X166 a_n15085_2072.t31 a_n17351_68.t22 DEBUG.t60 VSS.t258 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X167 a_26115_6933 a_26049_6873 a_25265_6933 VSS.t114 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X168 VDD.t22 a_27491_1710 a_21755_4018 VDD.t21 pfet_06v0 ad=0.458p pd=2.02u as=0.3782p ps=1.84u w=1.22u l=0.5u
+X169 a_25150_3994 a_24655_4398 VSS.t78 VSS.t77 nfet_06v0 ad=0.1312p pd=1.14u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X170 a_22304_4398 a_22388_3950.t3 a_22324_3994 VSS.t49 nfet_06v0 ad=0.3608p pd=2.52u as=0.1312p ps=1.14u w=0.82u l=0.6u
+X171 DEBUG.t37 PLL_FREERUN.t11 a_n15085_2072.t13 VDD.t323 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X172 VSS.t53 a_21855_n1258 a_22203_n358.t1 VSS.t52 nfet_06v0 ad=0.2002p pd=1.79u as=0.1183p ps=0.975u w=0.455u l=0.6u
+X173 DEBUG.t20 PLL_FREERUN.t12 PLL_VCTRL.t16 VSS.t318 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X174 a_27899_438.t10 PLL_DISABLE.t6 VDD.t286 VDD.t285 pfet_06v0 ad=0.4392p pd=1.94u as=0.3172p ps=1.74u w=1.22u l=0.5u
+X175 a_21506_13215.t6 a_21394_11355.t21 VDD.t251 VDD.t250 pfet_03v3 ad=1.456p pd=6.12u as=3.64p ps=12.5u w=5.6u l=0.56u
+X176 VSS.t204 a_22203_n358.t12 a_22115_1610.t0 VSS.t203 nfet_06v0 ad=0.1053p pd=0.925u as=0.1782p ps=1.69u w=0.405u l=0.6u
+X177 a_22963_217 a_24383_n345 VDD.t7 VDD.t6 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X178 a_25265_7733 a_24675_7463 a_26115_6933 VDD.t354 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X179 a_22388_2038.t0 a_23508_2038 a_25334_2082 VSS.t83 nfet_06v0 ad=0.3608p pd=2.52u as=0.1722p ps=1.24u w=0.82u l=0.6u
+X180 a_23620_8319.t2 a_n8537_93.t6 a_23691_6933 VSS.t139 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X181 VDD.t189 a_21394_11355.t22 a_21506_13215.t5 VDD.t188 pfet_03v3 ad=3.64p pd=12.5u as=1.456p ps=6.12u w=5.6u l=0.56u
+X182 a_1712_7613 a_5840_7613.t1 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X183 VDD.t340 a_22941_7733.t0 a_22941_7733.t1 VDD.t339 pfet_03v3 ad=1.072p pd=5.3u as=1.072p ps=5.3u w=0.8u l=0.33u
+X184 a_31479_1644 a_31391_1688 VDD.t39 VDD.t38 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X185 VDD.t95 a_24383_217 a_24375_629 VDD.t94 pfet_06v0 ad=0.23p pd=1.54u as=50.399998f ps=0.64u w=0.36u l=0.5u
+X186 a_24355_n1338.t44 PLL_DISABLE.t7 PLL_CLK_OUT.t31 VDD.t279 pfet_03v3 ad=1.95p pd=7.3u as=0.78p ps=3.52u w=3u l=0.33u
+X187 DEBUG.t49 a_n17351_68.t23 a_n15085_2072.t26 VSS.t168 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X188 VDD.t97 a_n558_2704.t4 a_21855_n1258 VDD.t96 pfet_06v0 ad=0.428p pd=2.02u as=0.2542p ps=1.44u w=0.82u l=0.5u
+X189 a_1712_9373 a_5840_8933 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X190 a_23691_7733 a_22941_7733.t4 a_23620_8319.t1 VDD.t100 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X191 a_21755_4018 a_27491_1710 VSS.t28 VSS.t27 nfet_06v0 ad=0.1261p pd=1.005u as=0.2134p ps=1.85u w=0.485u l=0.6u
+X192 a_27899_438.t9 PLL_DISABLE.t8 VDD.t281 VDD.t280 pfet_06v0 ad=0.4392p pd=1.94u as=0.3172p ps=1.74u w=1.22u l=0.5u
+X193 a_24355_n1338.t45 PLL_DISABLE.t9 PLL_CLK_OUT.t32 VDD.t282 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X194 a_21891_6933 a_n8537_n1530.t8 VSS.t101 VSS.t100 nfet_03v3 ad=0.26p pd=1.52u as=0.61p ps=3.22u w=1u l=0.33u
+X195 a_1712_11133 a_5840_11573 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X196 a_n2908_14213 a_1220_14653 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X197 a_24755_6933 a_24675_7463 VDD.t353 VDD.t352 pfet_03v3 ad=0.52p pd=2.52u as=1.3p ps=5.3u w=2u l=0.33u
+X198 a_22915_261 a_22115_253.t4 VSS.t152 VSS.t151 nfet_06v0 ad=43.199997f pd=0.6u as=0.1584p ps=1.6u w=0.36u l=0.6u
+X199 a_24090_629 a_22115_253.t5 a_23455_217 VDD.t86 pfet_06v0 ad=0.1665p pd=1.285u as=0.1791p ps=1.355u w=0.36u l=0.5u
+X200 a_5840_15093.t9 a_5840_7613.t0 cap_mim_2f0_m4m5_noshield c_width=11u c_length=11u
+X201 a_27899_438.t5 PLL_DISABLE.t10 VDD.t364 VDD.t363 pfet_06v0 ad=0.4392p pd=1.94u as=0.3172p ps=1.74u w=1.22u l=0.5u
+X202 a_n15085_2072.t27 a_n17351_68.t24 DEBUG.t50 VSS.t169 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X203 VDD.t191 a_21394_11355.t23 a_21506_13215.t4 VDD.t190 pfet_03v3 ad=1.456p pd=6.12u as=1.456p ps=6.12u w=5.6u l=0.56u
+X204 DEBUG.t5 PLL_FREERUN.t13 a_n15085_2072.t12 VDD.t320 pfet_03v3 ad=1.95p pd=7.3u as=0.78p ps=3.52u w=3u l=0.33u
+X205 a_n15085_2072.t11 PLL_FREERUN.t14 DEBUG.t4 VDD.t321 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X206 VSS.t110 a_n8537_93.t1 a_n8537_93.t2 VSS.t109 nfet_03v3 ad=0.496p pd=3.22u as=0.496p ps=3.22u w=0.4u l=0.33u
+X207 a_24355_n1338.t4 a_27899_438.t23 PLL_CLK_OUT.t18 VSS.t136 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X208 VDD.t310 a_23547_4907 a_23459_4951 VDD.t309 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X209 PLL_CLK_OUT.t17 a_27899_438.t24 a_24355_n1338.t5 VSS.t137 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X210 VSS.t206 a_22203_n358.t13 a_23423_n1258 VSS.t205 nfet_06v0 ad=0.1053p pd=0.925u as=0.1053p ps=0.925u w=0.405u l=0.6u
+X211 a_27814_14933 a_27414_10401 VSS.t42 ppolyf_u r_width=0.8u r_length=22u
+X212 a_25104_3522 a_22304_4398 a_24900_3522 VSS.t33 nfet_06v0 ad=0.1517p pd=1.19u as=0.1722p ps=1.24u w=0.82u l=0.6u
+X213 a_3345_2840 a_n487_2840 a_3149_2840 VDD.t81 pfet_03v3 ad=1.17p pd=4.9u as=1.17p ps=4.9u w=1.8u l=0.33u
+X214 a_5840_15093.t9 a_5840_7613.t0 cap_mim_2f0_m4m5_noshield c_width=11u c_length=11u
+X215 a_25334_3994 a_22864_4398 a_25150_3994 VSS.t325 nfet_06v0 ad=0.1722p pd=1.24u as=0.1312p ps=1.14u w=0.82u l=0.6u
+X216 a_22884_2082 a_22304_2486 VSS.t307 VSS.t306 nfet_06v0 ad=0.1312p pd=1.14u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X217 VDD.t294 a_23620_8319.t5 a_26795_7733 VDD.t293 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X218 a_22527_574 a_22115_253.t6 VSS.t107 VSS.t106 nfet_06v0 ad=0.1782p pd=1.69u as=0.1053p ps=0.925u w=0.405u l=0.6u
+X219 PLL_CLK_OUT.t38 PLL_DISABLE.t11 a_24355_n1338.t54 VDD.t365 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X220 a_n2908_8493 a_1220_8053 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X221 a_25265_6933 a_25369_6873 a_5840_15093.t8 VSS.t295 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X222 a_n15085_2072.t45 VSS.t188 cap_mim_2f0_m4m5_noshield c_width=10u c_length=5u
+X223 a_22324_2082 a_21855_2486 VSS.t70 VSS.t69 nfet_06v0 ad=0.1312p pd=1.14u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X224 a_7177_2840 a_3345_2840 a_6993_n1138 VSS.t92 nfet_03v3 ad=0.5124p pd=2.9u as=0.5124p ps=2.9u w=0.84u l=0.33u
+X225 a_21755_4018 a_27491_1710 VDD.t20 VDD.t19 pfet_06v0 ad=0.3782p pd=1.84u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X226 a_n487_2840 a_n558_2704.t5 a_n671_n1138 VSS.t266 nfet_03v3 ad=0.5124p pd=2.9u as=0.5124p ps=2.9u w=0.84u l=0.33u
+X227 a_5840_15093.t9 a_5840_7613.t0 cap_mim_2f0_m4m5_noshield c_width=11u c_length=11u
+X228 a_21394_11355.t15 a_21394_11355.t14 VDD.t157 VDD.t156 pfet_03v3 ad=1.456p pd=6.12u as=1.456p ps=6.12u w=5.6u l=0.56u
+X229 a_23455_n345 a_23083_n301 VDD.t68 VDD.t67 pfet_06v0 ad=0.1791p pd=1.355u as=0.1044p ps=0.94u w=0.36u l=0.5u
+X230 a_24335_261 a_22115_253.t7 a_24090_629 VSS.t108 nfet_06v0 ad=43.199997f pd=0.6u as=93.59999f ps=0.88u w=0.36u l=0.6u
+X231 VDD.t357 a_22203_4907 a_22115_4951 VDD.t356 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X232 a_5840_15093.t2 a_24755_6933 a_25265_7733 VDD.t127 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X233 a_22527_n715 a_22115_n302.t3 VDD.t290 VDD.t289 pfet_06v0 ad=0.3806p pd=2.61u as=0.2249p ps=1.385u w=0.865u l=0.5u
+X234 VDD.t12 a_23995_4907 a_23907_4951 VDD.t11 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X235 a_23455_1567 a_23083_1611 VDD.t31 VDD.t8 pfet_06v0 ad=0.1791p pd=1.355u as=0.1044p ps=0.94u w=0.36u l=0.5u
+X236 a_n4208_n141.t2 a_n8471_219.t8 VDD.t168 VDD.t167 pfet_03v3 ad=0.585p pd=3.1u as=0.585p ps=3.1u w=0.9u l=0.33u
+X237 a_n15085_2072.t10 PLL_FREERUN.t15 DEBUG.t3 VDD.t322 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X238 a_24355_n1338.t55 PLL_DISABLE.t12 PLL_CLK_OUT.t39 VDD.t366 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X239 a_27899_438.t12 PLL_DISABLE.t13 VDD.t360 VDD.t359 pfet_06v0 ad=0.4392p pd=1.94u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X240 a_24355_n1338.t32 a_23423_n1258 VDD.t230 VDD.t229 pfet_06v0 ad=0.4392p pd=1.94u as=0.3172p ps=1.74u w=1.22u l=0.5u
+X241 VSS.t242 a_23423_n1258 a_24355_n1338.t23 VSS.t241 nfet_06v0 ad=0.1892p pd=1.74u as=0.1118p ps=0.95u w=0.43u l=0.6u
+X242 a_23455_217 a_23083_261 VDD.t9 VDD.t8 pfet_06v0 ad=0.1791p pd=1.355u as=0.1044p ps=0.94u w=0.36u l=0.5u
+X243 VDD.t1 a_21755_477 a_21667_574 VDD.t0 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X244 a_22955_6933 a_n8537_n1530.t9 VSS.t103 VSS.t102 nfet_03v3 ad=0.26p pd=1.52u as=0.61p ps=3.22u w=1u l=0.33u
+X245 a_n15085_2072.t46 VSS.t189 cap_mim_2f0_m4m5_noshield c_width=10u c_length=5u
+X246 a_1712_8493 a_5840_8053 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X247 a_24355_n1338.t17 a_27899_438.t25 PLL_CLK_OUT.t16 VSS.t219 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X248 a_24207_4398 a_22304_4398 VDD.t26 VDD.t25 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X249 VSS.t16 a_25675_1518 a_25587_1610 VSS.t15 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X250 a_21855_2486 a_21755_1082 VSS.t300 VSS.t299 nfet_06v0 ad=0.2112p pd=1.84u as=0.2112p ps=1.84u w=0.48u l=0.6u
+X251 VDD.t130 a_22651_4907 a_22563_4951 VDD.t129 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X252 a_23444_2082 a_22864_2486 VSS.t234 VSS.t233 nfet_06v0 ad=0.1312p pd=1.14u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X253 VDD.t302 a_25339_4907 a_25251_4951 VDD.t301 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X254 a_18673_2840 a_n558_2704.t6 a_18477_2840 VDD.t162 pfet_03v3 ad=1.17p pd=4.9u as=1.17p ps=4.9u w=1.8u l=0.33u
+X255 a_1712_10253 a_5840_10693 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X256 a_24383_217 a_24090_629 VSS.t161 VSS.t36 nfet_06v0 ad=0.176p pd=1.68u as=0.142p ps=1.14u w=0.4u l=0.6u
+X257 a_n2908_13333 a_1220_13773 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X258 a_25265_6933 a_25369_6873 a_5840_15093.t7 VSS.t294 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X259 DEBUG.t51 a_n17351_68.t25 a_n15085_2072.t28 VSS.t170 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X260 VDD.t41 a_21855_n1258 a_22203_n358.t4 VDD.t40 pfet_06v0 ad=0.5368p pd=3.32u as=0.3782p ps=1.84u w=1.22u l=0.5u
+X261 VDD.t33 a_23455_n345 a_23427_n669 VDD.t32 pfet_06v0 ad=0.1044p pd=0.94u as=43.199997f ps=0.6u w=0.36u l=0.5u
+X262 PLL_VCTRL.t1 PLL_FREERUN.t16 DEBUG.t19 VSS.t148 nfet_03v3 ad=0.26p pd=1.52u as=0.65p ps=3.3u w=1u l=0.33u
+X263 a_21855_1126 a_21755_1082 VDD.t300 VDD.t299 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X264 a_22864_2486 a_22948_2038 a_22884_2082 VSS.t216 nfet_06v0 ad=0.3608p pd=2.52u as=0.1312p ps=1.14u w=0.82u l=0.6u
+X265 VSS.t87 a_n8537_n1530.t10 a_23691_6933 VSS.t86 nfet_03v3 ad=0.61p pd=3.22u as=0.26p ps=1.52u w=1u l=0.33u
+X266 PLL_CLK_OUT.t36 PLL_DISABLE.t14 a_24355_n1338.t52 VDD.t361 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X267 VDD.t91 a_23455_1567 a_23427_1243 VDD.t78 pfet_06v0 ad=0.1044p pd=0.94u as=43.199997f ps=0.6u w=0.36u l=0.5u
+X268 a_23508_2038 a_22304_2486 VDD.t308 VDD.t307 pfet_06v0 ad=0.2197p pd=1.365u as=0.3718p ps=2.57u w=0.845u l=0.5u
+X269 a_n8471_219.t2 DEBUG.t80 a_n9701_6193 VSS.t198 nfet_03v3 ad=0.488p pd=2.82u as=0.488p ps=2.82u w=0.8u l=0.33u
+X270 PLL_VCTRL.t0 PLL_FREERUN.t17 DEBUG.t18 VSS.t149 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X271 a_18673_2840 a_n558_2704.t7 a_18489_n1138 VSS.t226 nfet_03v3 ad=0.5124p pd=2.9u as=0.5124p ps=2.9u w=0.84u l=0.33u
+X272 a_24655_4398 a_24207_4398 VDD.t16 VDD.t15 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X273 VDD.t159 a_22203_n358.t14 a_23423_n1258 VDD.t158 pfet_06v0 ad=0.2132p pd=1.34u as=0.2952p ps=1.54u w=0.82u l=0.5u
+D1 VSS.t63 VSS.t62 np_6p0 pj=1.86u area=0.2052p
+X274 a_n15085_2072.t9 PLL_FREERUN.t18 DEBUG.t2 VDD.t106 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X275 a_n2908_12013 a_1220_11573 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X276 a_24383_1567 a_24090_1243 VSS.t172 VSS.t171 nfet_06v0 ad=0.176p pd=1.68u as=0.142p ps=1.14u w=0.4u l=0.6u
+X277 a_24675_7463 a_22388_3950.t4 VDD.t37 VDD.t36 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X278 PLL_VCTRL.t13 PLL_FREERUN.t19 DEBUG.t17 VSS.t273 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X279 a_23508_2038 a_22864_4398 a_25104_3522 VSS.t324 nfet_06v0 ad=0.3608p pd=2.52u as=0.1517p ps=1.19u w=0.82u l=0.6u
+X280 a_25095_7733 a_23620_8319.t6 VDD.t296 VDD.t295 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X281 a_23455_1567 a_23083_1611 VSS.t39 VSS.t38 nfet_06v0 ad=93.59999f pd=0.88u as=0.2637p ps=1.825u w=0.36u l=0.6u
+X282 a_22091_3430 a_22003_3522 VDD.t18 VDD.t17 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X283 a_24866_11400 a_21506_13215.t10 a_21394_11355.t0 VSS.t2 nfet_03v3 ad=3.416p pd=12.42u as=1.456p ps=6.12u w=5.6u l=0.56u
+X284 DEBUG.t16 PLL_FREERUN.t20 PLL_VCTRL.t12 VSS.t274 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X285 a_26049_6873 a_25369_6873 VSS.t293 VSS.t292 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X286 a_22959_629 a_22527_574 VDD.t90 VDD.t57 pfet_06v0 ad=53.999996f pd=0.66u as=0.4554p ps=3.25u w=0.36u l=0.5u
+X287 a_22864_2486 a_22304_2486 VDD.t306 VDD.t305 pfet_06v0 ad=0.2938p pd=1.65u as=0.4972p ps=3.14u w=1.13u l=0.5u
+X288 VSS.t213 a_n4208_n141.t4 a_18489_n1138 VSS.t212 nfet_03v3 ad=0.2646p pd=2.1u as=0.2646p ps=2.1u w=0.42u l=0.33u
+X289 a_31031_1644 a_30943_1688 VDD.t263 VDD.t262 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X290 a_24383_n345 a_24090_n669 VSS.t37 VSS.t36 nfet_06v0 ad=0.176p pd=1.68u as=0.142p ps=1.14u w=0.4u l=0.6u
+X291 DEBUG.t65 a_n17351_68.t26 a_n15085_2072.t33 VSS.t270 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X292 VDD.t228 a_23423_n1258 a_24355_n1338.t31 VDD.t227 pfet_06v0 ad=0.3172p pd=1.74u as=0.4392p ps=1.94u w=1.22u l=0.5u
+X293 a_27491_1710 PLL_REF_CLK.t1 VDD.t146 VDD.t145 pfet_06v0 ad=0.4488p pd=2.92u as=0.458p ps=2.02u w=1.02u l=0.5u
+X294 a_22304_2486 a_21855_2486 VDD.t61 VDD.t60 pfet_06v0 ad=0.2938p pd=1.65u as=0.4972p ps=3.14u w=1.13u l=0.5u
+X295 VDD.t35 a_24443_4907 a_24355_4951 VDD.t34 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X296 DEBUG.t15 PLL_FREERUN.t21 PLL_VCTRL.t3 VSS.t275 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X297 a_1712_14653 a_5840_14213 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X298 VDD.t275 a_25369_6873 a_26049_6873 VDD.t274 pfet_03v3 ad=1.3p pd=5.3u as=0.52p ps=2.52u w=2u l=0.33u
+X299 a_22948_2038 a_23508_2038 a_23444_2082 VSS.t82 nfet_06v0 ad=0.3608p pd=2.52u as=0.1312p ps=1.14u w=0.82u l=0.6u
+X300 VDD.t333 a_22864_4398 a_23508_2038 VDD.t332 pfet_06v0 ad=0.3718p pd=2.57u as=0.2197p ps=1.365u w=0.845u l=0.5u
+X301 a_5840_15093.t9 a_5840_7613.t0 cap_mim_2f0_m4m5_noshield c_width=11u c_length=11u
+X302 a_23455_n345 a_23083_n301 VSS.t79 VSS.t12 nfet_06v0 ad=93.59999f pd=0.88u as=0.2637p ps=1.825u w=0.36u l=0.6u
+X303 a_24383_1567 a_24090_1243 VDD.t119 VDD.t115 pfet_06v0 ad=0.352p pd=2.48u as=0.23p ps=1.54u w=0.8u l=0.5u
+X304 DEBUG.t14 PLL_FREERUN.t22 PLL_VCTRL.t2 VSS.t150 nfet_03v3 ad=0.65p pd=3.3u as=0.26p ps=1.52u w=1u l=0.33u
+X305 a_25265_6933 a_n8537_93.t7 a_25095_6933 VSS.t140 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X306 a_n15085_2072.t8 PLL_FREERUN.t23 DEBUG.t1 VDD.t107 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X307 a_n2908_9373 a_1220_9813 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X308 a_24355_n1338.t53 PLL_DISABLE.t15 PLL_CLK_OUT.t37 VDD.t362 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X309 VDD.t261 a_23099_4907 a_23011_4951 VDD.t260 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X310 VDD.t121 a_21755_n830 a_21667_n786 VDD.t120 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X311 a_n487_2840 a_n558_2704.t8 a_n683_2840 VDD.t131 pfet_03v3 ad=1.17p pd=4.9u as=1.17p ps=4.9u w=1.8u l=0.33u
+X312 a_5840_15093.t1 a_24755_6933 a_25265_7733 VDD.t126 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X313 a_24355_n1338.t39 PLL_DISABLE.t16 PLL_CLK_OUT.t29 VDD.t268 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X314 VDD.t312 a_24891_4907 a_24803_4951 VDD.t311 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X315 a_21394_11355.t13 a_21394_11355.t12 VDD.t214 VDD.t213 pfet_03v3 ad=1.456p pd=6.12u as=1.456p ps=6.12u w=5.6u l=0.56u
+X316 a_n15085_2072.t34 a_n17351_68.t27 DEBUG.t66 VSS.t271 nfet_03v3 ad=0.26p pd=1.52u as=0.65p ps=3.3u w=1u l=0.33u
+X317 a_22955_6933 a_n8537_93.t8 a_22941_7733.t2 VSS.t141 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X318 DEBUG.t0 PLL_FREERUN.t24 a_n15085_2072.t7 VDD.t108 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X319 VDD.t5 a_24383_n345 a_24375_n669 VDD.t4 pfet_06v0 ad=0.23p pd=1.54u as=50.399998f ps=0.64u w=0.36u l=0.5u
+X320 VDD.t346 a_24383_1567 a_24375_1243 VDD.t94 pfet_06v0 ad=0.23p pd=1.54u as=50.399998f ps=0.64u w=0.36u l=0.5u
+X321 a_24375_629 a_22527_574 a_24090_629 VDD.t56 pfet_06v0 ad=50.399998f pd=0.64u as=0.1665p ps=1.285u w=0.36u l=0.5u
+X322 a_22948_2038 a_22864_2486 VDD.t216 VDD.t215 pfet_06v0 ad=0.2938p pd=1.65u as=0.4972p ps=3.14u w=1.13u l=0.5u
+X323 a_n2908_11133 a_1220_10693 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X324 PLL_CLK_OUT.t15 a_27899_438.t26 a_24355_n1338.t18 VSS.t220 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X325 a_24207_2486 a_22304_2486 VSS.t305 VSS.t304 nfet_06v0 ad=0.2112p pd=1.84u as=0.2112p ps=1.84u w=0.48u l=0.6u
+X326 a_n15085_2072.t47 VSS.t190 cap_mim_2f0_m4m5_noshield c_width=10u c_length=5u
+X327 VDD.t212 a_21394_11355.t10 a_21394_11355.t11 VDD.t211 pfet_03v3 ad=1.456p pd=6.12u as=1.456p ps=6.12u w=5.6u l=0.56u
+X328 a_25265_6933 a_26049_6873 a_26115_6933 VSS.t113 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X329 PLL_CLK_OUT.t30 PLL_DISABLE.t17 a_24355_n1338.t40 VDD.t269 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X330 a_22963_1518 a_24383_217 VSS.t130 VSS.t10 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X331 a_1712_9373 a_5840_9813 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X332 a_n15085_2072.t6 PLL_FREERUN.t25 DEBUG.t36 VDD.t186 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X333 VDD.t110 a_22948_3950 a_22864_4398 VDD.t109 pfet_06v0 ad=0.4972p pd=3.14u as=0.2938p ps=1.65u w=1.13u l=0.5u
+X334 VSS.t3 a_24866_11400 a_21506_13215.t1 VSS.t2 nfet_03v3 ad=3.416p pd=12.42u as=1.456p ps=6.12u w=5.6u l=0.56u
+X335 a_n8659_n1230 a_n8537_n1530.t11 VSS.t89 VSS.t88 nfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X336 DEBUG.t67 a_n17351_68.t28 a_n15085_2072.t35 VSS.t272 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X337 VDD.t14 a_22388_3950.t5 a_22304_4398 VDD.t13 pfet_06v0 ad=0.4972p pd=3.14u as=0.2938p ps=1.65u w=1.13u l=0.5u
+X338 VDD.t271 PLL_DISABLE.t18 a_27899_438.t9 VDD.t270 pfet_06v0 ad=0.3172p pd=1.74u as=0.4392p ps=1.94u w=1.22u l=0.5u
+X339 a_24335_1611 a_22115_1610.t4 a_24090_1243 VSS.t120 nfet_06v0 ad=43.199997f pd=0.6u as=93.59999f ps=0.88u w=0.36u l=0.6u
+X340 PLL_CLK_OUT.t7 PLL_DISABLE.t19 a_24355_n1338.t15 VDD.t141 pfet_03v3 ad=0.78p pd=3.52u as=1.95p ps=7.3u w=3u l=0.33u
+X341 a_23691_6933 a_n8537_n1530.t12 VSS.t321 VSS.t320 nfet_03v3 ad=0.26p pd=1.52u as=0.4p ps=1.8u w=1u l=0.33u
+X342 a_22388_2038.t1 a_23508_2038 VDD.t73 VDD.t72 pfet_06v0 ad=0.4334p pd=2.85u as=0.2561p ps=1.505u w=0.985u l=0.5u
+X343 PLL_VCTRL.t19 PLL_FREERUN.t26 DEBUG.t13 VSS.t222 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X344 a_21394_11355.t9 a_21394_11355.t8 VDD.t174 VDD.t173 pfet_03v3 ad=1.456p pd=6.12u as=1.456p ps=6.12u w=5.6u l=0.56u
+X345 VDD.t143 PLL_DISABLE.t20 a_27899_438.t5 VDD.t142 pfet_06v0 ad=0.5368p pd=3.32u as=0.4392p ps=1.94u w=1.22u l=0.5u
+X346 a_1712_13773 a_5840_13333 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X347 a_24655_2486 a_24207_2486 VSS.t65 VSS.t64 nfet_06v0 ad=0.2112p pd=1.84u as=0.2112p ps=1.84u w=0.48u l=0.6u
+X348 a_24355_n1338.t16 PLL_DISABLE.t21 PLL_CLK_OUT.t8 VDD.t144 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X349 a_24090_1243 a_22527_1197 a_23455_1567 VSS.t66 nfet_06v0 ad=93.59999f pd=0.88u as=93.59999f ps=0.88u w=0.36u l=0.6u
+X350 a_21855_2486 a_21755_1082 VDD.t298 VDD.t297 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X351 a_22388_2038.t1 a_24655_2486 VDD.t99 VDD.t98 pfet_06v0 ad=0.2561p pd=1.505u as=0.4334p ps=2.85u w=0.985u l=0.5u
+X352 VDD.t193 a_21394_11355.t24 a_21506_13215.t3 VDD.t192 pfet_03v3 ad=1.456p pd=6.12u as=1.456p ps=6.12u w=5.6u l=0.56u
+X353 a_24355_n1338.t22 a_23423_n1258 VSS.t240 VSS.t239 nfet_06v0 ad=0.1118p pd=0.95u as=0.1892p ps=1.74u w=0.43u l=0.6u
+X354 DEBUG.t35 PLL_FREERUN.t27 a_n15085_2072.t5 VDD.t187 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X355 a_25369_6873 a_22388_2038.t3 VSS.t182 VSS.t181 nfet_06v0 ad=0.2112p pd=1.84u as=0.2112p ps=1.84u w=0.48u l=0.6u
+X356 a_22963_1518 a_24383_217 VDD.t93 VDD.t92 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X357 VSS.t261 a_n4208_n141.t5 a_14657_n1138 VSS.t260 nfet_03v3 ad=0.2646p pd=2.1u as=0.2646p ps=2.1u w=0.42u l=0.33u
+X358 a_24335_n301 a_22115_n302.t4 a_24090_n669 VSS.t108 nfet_06v0 ad=43.199997f pd=0.6u as=93.59999f ps=0.88u w=0.36u l=0.6u
+X359 a_22527_1197 a_22115_1610.t5 VDD.t358 VDD.t103 pfet_06v0 ad=0.3806p pd=2.61u as=0.2249p ps=1.385u w=0.865u l=0.5u
+X360 a_n2908_8493 a_1220_8933 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X361 DEBUG.t12 PLL_FREERUN.t28 PLL_VCTRL.t18 VSS.t336 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X362 a_1220_12453 a_5840_11573 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X363 VDD.t170 a_n8471_219.t9 a_14645_2840 VDD.t169 pfet_03v3 ad=0.585p pd=3.1u as=0.585p ps=3.1u w=0.9u l=0.33u
+X364 a_23427_n669 a_22115_n302.t5 a_23083_n301 VDD.t278 pfet_06v0 ad=43.199997f pd=0.6u as=0.1872p ps=1.4u w=0.36u l=0.5u
+X365 a_25265_6933 a_26049_6873 a_26115_6933 VSS.t112 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X366 DEBUG.t71 a_n17351_68.t29 a_n15085_2072.t37 VSS.t314 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X367 a_23083_261 a_22963_217 a_22959_629 VDD.t59 pfet_06v0 ad=0.1872p pd=1.4u as=53.999996f ps=0.66u w=0.36u l=0.5u
+X368 a_24090_n669 a_22527_n715 a_23455_n345 VSS.t58 nfet_06v0 ad=93.59999f pd=0.88u as=93.59999f ps=0.88u w=0.36u l=0.6u
+X369 a_23427_1243 a_22115_1610.t6 a_23083_1611 VDD.t102 pfet_06v0 ad=43.199997f pd=0.6u as=0.1872p ps=1.4u w=0.36u l=0.5u
+X370 VDD.t71 a_23508_2038 a_22948_3950 VDD.t70 pfet_06v0 ad=0.4972p pd=3.14u as=0.2938p ps=1.65u w=1.13u l=0.5u
+X371 a_23508_2038 a_22304_4398 VDD.t24 VDD.t23 pfet_06v0 ad=0.2197p pd=1.365u as=0.2197p ps=1.365u w=0.845u l=0.5u
+X372 a_26795_7733 a_22941_7733.t5 a_25265_7733 VDD.t101 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X373 a_23691_6933 a_n8537_93.t9 a_23620_8319.t0 VSS.t45 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X374 a_n2908_10253 a_1220_9813 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X375 a_21755_4907 a_21667_4951 VSS.t105 VSS.t104 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X376 a_5840_15093.t9 a_5840_7613.t0 cap_mim_2f0_m4m5_noshield c_width=11u c_length=11u
+X377 a_25150_2082 a_24655_2486 VSS.t132 VSS.t131 nfet_06v0 ad=0.1312p pd=1.14u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X378 a_22304_2486 a_22388_2038.t4 a_22324_2082 VSS.t269 nfet_06v0 ad=0.3608p pd=2.52u as=0.1312p ps=1.14u w=0.82u l=0.6u
+X379 PLL_VCTRL.t11 PLL_FREERUN.t29 DEBUG.t11 VSS.t337 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X380 a_n15085_2072.t4 PLL_FREERUN.t30 DEBUG.t34 VDD.t344 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X381 a_5840_15093.t9 a_5840_7613.t0 cap_mim_2f0_m4m5_noshield c_width=11u c_length=11u
+X382 VDD.t161 a_22203_n358.t15 a_23423_n1258 VDD.t160 pfet_06v0 ad=0.367p pd=1.92u as=0.2952p ps=1.54u w=0.82u l=0.5u
+X383 VSS.t263 a_n4208_n141.t6 a_3161_n1138 VSS.t262 nfet_03v3 ad=0.2646p pd=2.1u as=0.2646p ps=2.1u w=0.42u l=0.33u
+X384 a_27014_14933 a_27414_10401 VSS.t71 ppolyf_u r_width=0.8u r_length=22u
+X385 a_24755_6933 a_24675_7463 VSS.t344 VSS.t343 nfet_03v3 ad=0.26p pd=1.52u as=0.61p ps=3.22u w=1u l=0.33u
+X386 a_n15085_2072.t38 a_n17351_68.t30 DEBUG.t72 VSS.t315 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X387 a_1712_8493 a_5840_8933 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X388 VSS.t277 PLL_DISABLE.t22 a_27899_438.t6 VSS.t276 nfet_06v0 ad=0.2132p pd=1.34u as=0.2132p ps=1.34u w=0.82u l=0.6u
+X389 VSS.t215 a_22539_3430 a_22451_3522 VSS.t214 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X390 PLL_VCTRL.t10 PLL_FREERUN.t31 DEBUG.t10 VSS.t199 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X391 a_25675_1518 a_25587_1610 VDD.t319 VDD.t318 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X392 a_21394_11355.t7 a_21394_11355.t6 VDD.t255 VDD.t254 pfet_03v3 ad=1.456p pd=6.12u as=3.64p ps=12.5u w=5.6u l=0.56u
+X393 VSS.t279 PLL_DISABLE.t23 a_27899_438.t7 VSS.t278 nfet_06v0 ad=0.3608p pd=2.52u as=0.2132p ps=1.34u w=0.82u l=0.6u
+X394 a_21891_6933 a_n8537_93.t10 a_n8537_n1530.t0 VSS.t46 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X395 VDD.t351 a_24675_7463 a_24755_6933 VDD.t350 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X396 a_21394_11355.t1 a_21506_13215.t11 a_24866_11400 VSS.t0 nfet_03v3 ad=1.456p pd=6.12u as=3.416p ps=12.42u w=5.6u l=0.56u
+X397 VDD.t331 a_22864_4398 a_22388_3950.t0 VDD.t330 pfet_06v0 ad=0.2561p pd=1.505u as=0.2561p ps=1.505u w=0.985u l=0.5u
+X398 VDD.t253 a_21394_11355.t4 a_21394_11355.t5 VDD.t252 pfet_03v3 ad=3.64p pd=12.5u as=1.456p ps=6.12u w=5.6u l=0.56u
+X399 VSS.t323 a_n8537_n1530.t13 a_26795_6933 VSS.t322 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X400 DEBUG.t73 a_n17351_68.t31 a_n15085_2072.t39 VSS.t316 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X401 DEBUG.t33 PLL_FREERUN.t32 a_n15085_2072.t3 VDD.t149 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X402 VSS.t209 a_22203_n358.t16 a_22115_253.t0 VSS.t207 nfet_06v0 ad=0.1053p pd=0.925u as=0.1782p ps=1.69u w=0.405u l=0.6u
+X403 PLL_CLK_OUT.t14 a_27899_438.t27 a_24355_n1338.t19 VSS.t221 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X404 a_n4208_n141.t1 a_n4208_n141.t0 VSS.t283 VSS.t282 nfet_03v3 ad=0.2646p pd=2.1u as=0.2646p ps=2.1u w=0.42u l=0.33u
+X405 a_24355_n1338.t49 a_27899_438.t28 PLL_CLK_OUT.t13 VSS.t349 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X406 DEBUG.t9 PLL_FREERUN.t33 PLL_VCTRL.t5 VSS.t200 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X407 VSS.t297 a_22987_3430 a_22899_3522 VSS.t296 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X408 a_22963_217 a_24383_n345 VSS.t11 VSS.t10 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X409 a_n8471_219.t1 a_n8537_93.t11 a_n8659_n1230 VSS.t116 nfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X410 a_24090_629 a_22527_574 a_23455_217 VSS.t58 nfet_06v0 ad=93.59999f pd=0.88u as=93.59999f ps=0.88u w=0.36u l=0.6u
+X411 VDD.t205 a_n8471_219.t10 a_6981_2840 VDD.t204 pfet_03v3 ad=0.585p pd=3.1u as=0.585p ps=3.1u w=0.9u l=0.33u
+X412 a_27899_438.t8 PLL_DISABLE.t24 VSS.t281 VSS.t280 nfet_06v0 ad=0.2132p pd=1.34u as=0.2132p ps=1.34u w=0.82u l=0.6u
+X413 a_5840_15093.t6 a_25369_6873 a_25265_6933 VSS.t291 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X414 VDD.t226 a_23423_n1258 a_24355_n1338.t30 VDD.t225 pfet_06v0 ad=0.3172p pd=1.74u as=0.4392p ps=1.94u w=1.22u l=0.5u
+X415 VSS.t238 a_23423_n1258 a_24355_n1338.t21 VSS.t237 nfet_06v0 ad=0.1118p pd=0.95u as=0.1118p ps=0.95u w=0.43u l=0.6u
+X416 a_1712_11133 a_5840_10693 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X417 a_n15085_2072.t2 PLL_FREERUN.t34 DEBUG.t32 VDD.t138 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X418 VDD.t88 PLL_DISABLE.t25 a_27899_438.t1 VDD.t87 pfet_06v0 ad=0.3172p pd=1.74u as=0.4392p ps=1.94u w=1.22u l=0.5u
+X419 a_n2908_14213 a_1220_13773 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+D2 VSS.t352 VDD.t53 pn_6p0 pj=1.86u area=0.2052p
+X420 a_n17351_68.t1 PLL_FREERUN.t35 VDD.t140 VDD.t139 pfet_03v3 ad=1.95p pd=7.3u as=1.95p ps=7.3u w=3u l=0.28u
+X421 a_n15085_2072.t23 a_n17351_68.t32 DEBUG.t43 VSS.t158 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X422 VDD.t245 a_21394_11355.t2 a_21394_11355.t3 VDD.t244 pfet_03v3 ad=1.456p pd=6.12u as=1.456p ps=6.12u w=5.6u l=0.56u
+X423 VDD.t151 a_21394_11355.t25 a_n8537_n1530.t1 VDD.t150 pfet_03v3 ad=1.456p pd=5.78u as=0.5824p ps=2.76u w=2.24u l=0.56u
+X424 a_23547_4907 a_23459_4951 VSS.t97 VSS.t96 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X425 a_25334_2082 a_22864_2486 a_25150_2082 VSS.t232 nfet_06v0 ad=0.1722p pd=1.24u as=0.1312p ps=1.14u w=0.82u l=0.6u
+X426 a_26115_6933 a_24675_7463 a_25265_7733 VDD.t349 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X427 VSS.t126 a_31479_1644 a_31391_1688 VSS.t125 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X428 VSS.t340 a_24383_1567 a_24335_1611 VSS.t339 nfet_06v0 ad=0.142p pd=1.14u as=43.199997f ps=0.6u w=0.36u l=0.6u
+X429 PLL_VCTRL.t4 PLL_FREERUN.t36 DEBUG.t8 VSS.t186 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X430 a_24355_n1338.t2 PLL_DISABLE.t26 PLL_CLK_OUT.t2 VDD.t89 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X431 VSS.t163 a_21643_3430 a_21555_3522 VSS.t162 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X432 a_11009_2840 a_7177_2840 a_10825_n1138 VSS.t80 nfet_03v3 ad=0.5124p pd=2.9u as=0.5124p ps=2.9u w=0.84u l=0.33u
+X433 a_24207_2486 a_22304_2486 VDD.t304 VDD.t303 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X434 a_n15085_2072.t48 VSS.t191 cap_mim_2f0_m4m5_noshield c_width=10u c_length=5u
+X435 a_24706_3522 a_22304_2486 VSS.t303 VSS.t302 nfet_06v0 ad=0.1517p pd=1.19u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X436 VSS.t265 a_n4208_n141.t7 a_6993_n1138 VSS.t264 nfet_03v3 ad=0.2646p pd=2.1u as=0.2646p ps=2.1u w=0.42u l=0.33u
+X437 a_27899_438.t2 PLL_DISABLE.t27 VSS.t122 VSS.t121 nfet_06v0 ad=0.2132p pd=1.34u as=0.2132p ps=1.34u w=0.82u l=0.6u
+X438 a_23423_n1258 a_22203_n358.t17 VDD.t133 VDD.t132 pfet_06v0 ad=0.2952p pd=1.54u as=0.3608p ps=2.52u w=0.82u l=0.5u
+X439 DEBUG.t44 a_n17351_68.t33 a_n15085_2072.t24 VSS.t159 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X440 a_n2908_7613 a_1220_8053 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X441 VDD.t337 PLL_DISABLE.t28 a_27899_438.t10 VDD.t336 pfet_06v0 ad=0.3172p pd=1.74u as=0.4392p ps=1.94u w=1.22u l=0.5u
+X442 VSS.t9 a_24383_n345 a_24335_n301 VSS.t8 nfet_06v0 ad=0.142p pd=1.14u as=43.199997f ps=0.6u w=0.36u l=0.6u
+X443 a_22203_4907 a_22115_4951 VSS.t218 VSS.t217 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X444 a_27899_438.t11 PLL_DISABLE.t29 VSS.t329 VSS.t328 nfet_06v0 ad=0.2132p pd=1.34u as=0.2132p ps=1.34u w=0.82u l=0.6u
+X445 a_5840_15093.t9 VSS.t338 cap_mim_2f0_m4m5_noshield c_width=11u c_length=11u
+X446 a_25675_n394 a_25587_n302 VDD.t288 VDD.t287 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=1u
+X447 a_23995_4907 a_23907_4951 VSS.t180 VSS.t179 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X448 a_23423_n1258 a_22203_n358.t18 VDD.t135 VDD.t134 pfet_06v0 ad=0.2952p pd=1.54u as=0.2132p ps=1.34u w=0.82u l=0.5u
+X449 PLL_CLK_OUT.t12 a_27899_438.t29 a_24355_n1338.t50 VSS.t350 nfet_03v3 ad=0.26p pd=1.52u as=0.65p ps=3.3u w=1u l=0.33u
+X450 a_24375_n669 a_22527_n715 a_24090_n669 VDD.t48 pfet_06v0 ad=50.399998f pd=0.64u as=0.1665p ps=1.285u w=0.36u l=0.5u
+X451 a_22388_3950.t1 a_23508_2038 a_25334_3994 VSS.t81 nfet_06v0 ad=0.3608p pd=2.52u as=0.1722p ps=1.24u w=0.82u l=0.6u
+X452 a_24355_n1338.t51 a_27899_438.t30 PLL_CLK_OUT.t11 VSS.t351 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X453 a_24375_1243 a_22527_1197 a_24090_1243 VDD.t56 pfet_06v0 ad=50.399998f pd=0.64u as=0.1665p ps=1.285u w=0.36u l=0.5u
+X454 PLL_CLK_OUT.t35 PLL_DISABLE.t30 a_24355_n1338.t48 VDD.t338 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X455 a_n8537_n1530.t2 a_21394_11355.t26 VDD.t153 VDD.t152 pfet_03v3 ad=0.5824p pd=2.76u as=0.5824p ps=2.76u w=2.24u l=0.56u
+X456 a_21506_13215.t0 a_24866_11400 VSS.t1 VSS.t0 nfet_03v3 ad=1.456p pd=6.12u as=3.416p ps=12.42u w=5.6u l=0.56u
+X457 a_24655_2486 a_24207_2486 VDD.t55 VDD.t54 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X458 a_21755_n830 a_21667_n786 VSS.t44 VSS.t43 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X459 a_n8659_n1230 a_n8537_n1530.t14 VSS.t5 VSS.t4 nfet_03v3 ad=1.22p pd=5.22u as=0.52p ps=2.52u w=2u l=0.33u
+X460 a_n8659_n1230 a_n8537_93.t12 a_n8471_219.t1 VSS.t117 nfet_03v3 ad=1.22p pd=5.22u as=0.52p ps=2.52u w=2u l=0.33u
+X461 a_24900_3522 a_22864_2486 a_24706_3522 VSS.t231 nfet_06v0 ad=0.1722p pd=1.24u as=0.1517p ps=1.19u w=0.82u l=0.6u
+X462 a_24355_n1338.t29 a_23423_n1258 VDD.t224 VDD.t223 pfet_06v0 ad=0.4392p pd=1.94u as=0.367p ps=1.92u w=1.22u l=0.5u
+X463 PLL_CLK_OUT.t6 PLL_DISABLE.t31 a_24355_n1338.t14 VDD.t122 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X464 a_25369_6873 a_22388_2038.t5 VDD.t164 VDD.t163 pfet_06v0 ad=0.5368p pd=3.32u as=0.5368p ps=3.32u w=1.22u l=0.5u
+X465 a_26115_6933 a_24675_7463 a_25265_7733 VDD.t348 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X466 VDD.t222 a_23423_n1258 a_24355_n1338.t28 VDD.t221 pfet_06v0 ad=0.3172p pd=1.74u as=0.4392p ps=1.94u w=1.22u l=0.5u
+X467 a_5840_15093.t9 a_5840_7613.t0 cap_mim_2f0_m4m5_noshield c_width=11u c_length=11u
+X468 a_27814_14933 VSS.t155 VSS.t154 ppolyf_u r_width=0.8u r_length=22u
+X469 DEBUG.t45 a_n17351_68.t34 PLL_VCTRL.t21 VDD.t111 pfet_03v3 ad=1.95p pd=7.3u as=0.78p ps=3.52u w=3u l=0.33u
+X470 a_25095_6933 a_n8537_n1530.t15 VSS.t7 VSS.t6 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X471 a_22651_4907 a_22563_4951 VSS.t48 VSS.t47 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X472 a_22527_n715 a_22115_n302.t6 VSS.t197 VSS.t106 nfet_06v0 ad=0.1782p pd=1.69u as=0.1053p ps=0.925u w=0.405u l=0.6u
+X473 a_1712_7613 a_5840_8053 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X474 VSS.t174 PLL_DISABLE.t32 a_27899_438.t3 VSS.t173 nfet_06v0 ad=0.2132p pd=1.34u as=0.2132p ps=1.34u w=0.82u l=0.6u
+X475 a_25339_4907 a_25251_4951 VSS.t95 VSS.t94 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X476 DEBUG.t31 PLL_FREERUN.t37 a_n15085_2072.t1 VDD.t341 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X477 VSS.t228 a_n4208_n141.t8 a_10825_n1138 VSS.t227 nfet_03v3 ad=0.2646p pd=2.1u as=0.2646p ps=2.1u w=0.42u l=0.33u
+X478 DEBUG.t40 a_n17351_68.t35 a_n15085_2072.t21 VSS.t133 nfet_03v3 ad=0.65p pd=3.3u as=0.26p ps=1.52u w=1u l=0.33u
+X479 a_n15085_2072.t22 a_n17351_68.t36 DEBUG.t41 VSS.t134 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X480 a_3345_2840 a_n487_2840 a_3161_n1138 VSS.t93 nfet_03v3 ad=0.5124p pd=2.9u as=0.5124p ps=2.9u w=0.84u l=0.33u
+X481 a_1712_10253 a_5840_9813 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+X482 a_n8537_93.t0 a_21394_11355.t27 VDD.t155 VDD.t154 pfet_03v3 ad=0.5824p pd=2.76u as=1.456p ps=5.78u w=2.24u l=0.56u
+X483 a_23620_8319.t1 a_22941_7733.t6 a_23691_7733 VDD.t315 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X484 VDD.t137 a_22203_n358.t19 a_22115_n302.t1 VDD.t136 pfet_06v0 ad=0.2249p pd=1.385u as=0.3806p ps=2.61u w=0.865u l=0.5u
+X485 a_n2908_13333 a_1220_13333 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X486 VSS.t128 a_23435_3430 a_23347_3522 VSS.t127 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X487 a_27899_438.t4 PLL_DISABLE.t33 VSS.t176 VSS.t175 nfet_06v0 ad=0.2132p pd=1.34u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X488 a_24355_n1338.t0 PLL_DISABLE.t34 PLL_CLK_OUT.t0 VDD.t62 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X489 a_n15085_2072.t49 VSS.t319 cap_mim_2f0_m4m5_noshield c_width=10u c_length=5u
+X490 VSS.t290 a_25369_6873 a_26049_6873 VSS.t289 nfet_03v3 ad=0.61p pd=3.22u as=0.26p ps=1.52u w=1u l=0.33u
+X491 a_24355_n1338.t20 a_23423_n1258 VSS.t236 VSS.t235 nfet_06v0 ad=0.1118p pd=0.95u as=0.1118p ps=0.95u w=0.43u l=0.6u
+X492 VSS.t51 a_21855_n1258 a_22203_n358.t0 VSS.t50 nfet_06v0 ad=0.1183p pd=0.975u as=0.1183p ps=0.975u w=0.455u l=0.6u
+X493 a_24090_n669 a_22115_n302.t7 a_23455_n345 VDD.t148 pfet_06v0 ad=0.1665p pd=1.285u as=0.1791p ps=1.355u w=0.36u l=0.5u
+X494 a_n15085_2072.t20 a_1220_14653 VSS.t17 ppolyf_u_1k r_width=1u r_length=20u
+X495 VDD.t178 a_21394_11355.t28 a_n8537_93.t0 VDD.t177 pfet_03v3 ad=0.5824p pd=2.76u as=0.5824p ps=2.76u w=2.24u l=0.56u
+X496 a_22884_3994 a_22304_4398 VSS.t32 VSS.t31 nfet_06v0 ad=0.1312p pd=1.14u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X497 a_n15085_2072.t50 VSS.t190 cap_mim_2f0_m4m5_noshield c_width=10u c_length=5u
+X498 a_24090_1243 a_22115_1610.t7 a_23455_1567 VDD.t86 pfet_06v0 ad=0.1665p pd=1.285u as=0.1791p ps=1.355u w=0.36u l=0.5u
+X499 a_21506_13215.t2 a_21394_11355.t29 VDD.t180 VDD.t179 pfet_03v3 ad=1.456p pd=6.12u as=1.456p ps=6.12u w=5.6u l=0.56u
+X500 VSS.t75 PLL_DISABLE.t35 a_27899_438.t0 VSS.t74 nfet_06v0 ad=0.2132p pd=1.34u as=0.2132p ps=1.34u w=0.82u l=0.6u
+X501 a_24355_n1338.t6 a_27899_438.t31 PLL_CLK_OUT.t10 VSS.t156 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X502 a_22324_3994 a_21855_4398 VSS.t310 VSS.t309 nfet_06v0 ad=0.1312p pd=1.14u as=0.3608p ps=2.52u w=0.82u l=0.6u
+X503 PLL_CLK_OUT.t9 a_27899_438.t32 a_24355_n1338.t7 VSS.t157 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X504 DEBUG.t42 a_n17351_68.t37 PLL_VCTRL.t20 VDD.t105 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X505 VSS.t129 a_24383_217 a_24335_261 VSS.t8 nfet_06v0 ad=0.142p pd=1.14u as=43.199997f ps=0.6u w=0.36u l=0.6u
+X506 a_n8659_n1230 a_n8537_93.t13 a_n8471_219.t0 VSS.t330 nfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X507 VSS.t22 a_23883_3430 a_23795_3522 VSS.t21 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X508 PLL_CLK_OUT.t1 PLL_DISABLE.t36 a_24355_n1338.t1 VDD.t63 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X509 a_n17351_68.t0 PLL_FREERUN.t38 VSS.t333 VSS.t332 nfet_03v3 ad=0.65p pd=3.3u as=0.65p ps=3.3u w=1u l=0.28u
+X510 a_5840_15093.t5 a_25369_6873 a_25265_6933 VSS.t288 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X511 PLL_VCTRL.t9 PLL_FREERUN.t39 DEBUG.t7 VSS.t334 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X512 a_n15085_2072.t25 a_n17351_68.t38 DEBUG.t46 VSS.t164 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X513 VSS.t26 a_27491_1710 a_21755_4018 VSS.t25 nfet_06v0 ad=0.151p pd=1.185u as=0.1261p ps=1.005u w=0.485u l=0.6u
+X514 VDD.t207 a_n8471_219.t11 a_10813_2840 VDD.t206 pfet_03v3 ad=0.585p pd=3.1u as=0.585p ps=3.1u w=0.9u l=0.33u
+X515 a_n9701_6193 a_16431_6193 VSS.t183 ppolyf_u r_width=0.8u r_length=0.13m
+X516 DEBUG.t30 PLL_FREERUN.t40 a_n15085_2072.t0 VDD.t237 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X517 a_24443_4907 a_24355_4951 VSS.t185 VSS.t184 nfet_06v0 ad=0.3608p pd=2.52u as=0.3608p ps=2.52u w=0.82u l=1u
+X518 a_n558_2704.t0 a_11009_2840 a_14645_2840 VDD.t147 pfet_03v3 ad=1.17p pd=4.9u as=1.17p ps=4.9u w=1.8u l=0.33u
+X519 PLL_VCTRL.t8 PLL_FREERUN.t41 DEBUG.t6 VSS.t253 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X520 a_25265_7733 a_24755_6933 a_5840_15093.t0 VDD.t125 pfet_03v3 ad=0.52p pd=2.52u as=0.52p ps=2.52u w=2u l=0.33u
+X521 PLL_VCTRL.t22 a_n17351_68.t39 DEBUG.t47 VDD.t117 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X522 a_1712_13773 a_5840_14213 VSS.t18 ppolyf_u_1k r_width=1u r_length=20u
+D3 VSS.t187 PLL_DISABLE.t37 np_6p0 pj=1.86u area=0.2052p
+X523 a_n8537_n1530.t3 a_n8537_93.t14 a_21891_6933 VSS.t331 nfet_03v3 ad=0.26p pd=1.52u as=0.26p ps=1.52u w=1u l=0.33u
+X524 DEBUG.t48 a_n17351_68.t40 PLL_VCTRL.t23 VDD.t118 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+X525 VSS.t208 a_22203_n358.t20 a_22115_n302.t0 VSS.t207 nfet_06v0 ad=0.1053p pd=0.925u as=0.1782p ps=1.69u w=0.405u l=0.6u
+X526 DEBUG.t61 a_n17351_68.t41 PLL_VCTRL.t30 VDD.t239 pfet_03v3 ad=0.78p pd=3.52u as=0.78p ps=3.52u w=3u l=0.33u
+.ends
+

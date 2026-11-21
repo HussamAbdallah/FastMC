@@ -1,0 +1,717 @@
+--- a/src/include/ngspice/tskdefs.h
++++ b/src/include/ngspice/tskdefs.h
+@@ -79,6 +79,11 @@
+     double TSKkluMemGrowFactor ;
+ #endif
+ 
++    /* Monte Carlo sweep options (set by "sweep monte=N" on analysis cards) */
++    int TSKmonteN;                   /* number of MC iterations (0 or 1 = disabled) */
++    unsigned int TSKmcParamsOnly:1;  /* skip full solver; run .op + dump params to .mc file */
++    int TSKmonteSeed;                /* >0: reproduce this seed index for a single full sim */
++
+ };
+ 
+ #endif
+--- a/src/include/ngspice/optdefs.h
++++ b/src/include/ngspice/optdefs.h
+@@ -138,6 +138,11 @@
+     OPT_NEWTRUNC,
+ };
+ 
++enum {
++    OPT_MC_PARAMS_ONLY = 300,  /* dump MC parameter vectors, skip circuit solver */
++    OPT_MONTE_SEED     = 301,  /* seed index to reproduce for a single full simulation */
++};
++
+ #ifdef XSPICE
+ /* gtri - begin - wbk - add new options */
+ enum {
+--- a/src/spicelib/analysis/cktsopt.c
++++ b/src/spicelib/analysis/cktsopt.c
+@@ -205,6 +205,12 @@
+             "    compilation with preprocessor flag 'PREDICTOR' is required.\n");
+ #endif
+         break;
++    case OPT_MC_PARAMS_ONLY:
++        task->TSKmcParamsOnly = (val->iValue != 0);
++        break;
++    case OPT_MONTE_SEED:
++        task->TSKmonteSeed = val->iValue;
++        break;
+ /* gtri - begin - wbk - add new options */
+ #ifdef XSPICE
+     case OPT_EVT_MAX_OP_ALTER:
+@@ -380,7 +386,11 @@
+  { "ltereltol", OPT_LTERELTOL,IF_SET | IF_REAL ,"Relative error tolerence" },
+  { "lteabstol", OPT_LTEABSTOL,IF_SET | IF_REAL,"Absolute error tolerence" },
+  { "ltetrtol", OPT_LTETRTOL,IF_SET | IF_REAL,"Truncation error overestimation factor" },
+- { "newtrunc", OPT_NEWTRUNC,IF_SET | IF_FLAG,"voltage controlled truncation" }
++ { "newtrunc", OPT_NEWTRUNC,IF_SET | IF_FLAG,"voltage controlled truncation" },
++ { "mc_params_only", OPT_MC_PARAMS_ONLY, IF_SET|IF_FLAG,
++        "Skip circuit solver, run .op and dump device params to mc_params.mc" },
++ { "monte_seed", OPT_MONTE_SEED, IF_SET|IF_INTEGER,
++        "Reproduce a specific MC seed for a full circuit simulation (seed index from mc_params.mc)" }
+ 
+ };
+ 
+--- a/src/spicelib/parser/inp2dot.c
++++ b/src/spicelib/parser/inp2dot.c
+@@ -834,6 +834,27 @@
+     int rtn = 0;
+ 
+     INPgetTok(&line, &token, 1);
++
++    /* Strip "sweep monte=N" from the card line before any dot_* parser sees it.
++     * Works for .tran, .ac, .dc, .op, and any other analysis type. */
++    {
++        char *p = strstr(current->line, "sweep");
++        if (p) {
++            char *q = p + 5;
++            while (*q == ' ' || *q == '\t') q++;
++            if (strncmp(q, "monte=", 6) == 0) {
++                int n = atoi(q + 6);
++                if (n > 0 && task) {
++                    task->TSKmonteN = n;
++                    /* Remove "sweep monte=NNN" span from the line in-place */
++                    char *end = q + 6;
++                    while (*end && *end != ' ' && *end != '\t' && *end != '\n') end++;
++                    memmove(p, end, strlen(end) + 1);
++                }
++            }
++        }
++    }
++
+     if (strcmp(token, ".model") == 0) {
+         /* don't have to do anything, since models were all done in
+          * pass 1 */
+--- a/src/frontend/inpcom.c
++++ b/src/frontend/inpcom.c
+@@ -28,6 +28,7 @@
+ #include "ngspice/fteext.h"
+ #include "ngspice/fteinp.h"
+ #include "numparam/general.h"
++#include "numparam/numpaif.h"
+ 
+ #include "com_set.h"
+ 
+@@ -8498,6 +8499,23 @@
+     *card->line = '*';
+     insert_new_line(card, new_str, 0, card->linenum_orig, card->linesource);
+ 
++    /* Register agauss funcname for MC column naming (captures param name before
++     * inp_expand_macros_in_deck inlines it away into agauss(nominal,av,s)). */
++    if (funcname && funcbody &&
++        (strstr(funcbody, "agauss") || strstr(funcbody, "AGAUSS"))) {
++        const char *p = strchr(funcbody, '(');
++        if (p) {
++            char tmp[256];
++            strncpy(tmp, p + 1, sizeof(tmp) - 1);
++            tmp[sizeof(tmp) - 1] = '\0';
++            for (char *q = tmp; *q && *q != ')'; q++)
++                if (*q == ',') *q = ' ';
++            double nom = 0.0, av = 0.0, sig = 0.0;
++            if (sscanf(tmp, "%lf %lf %lf", &nom, &av, &sig) == 3)
++                mc_agauss_register_func(funcname, av, sig);
++        }
++    }
++
+     return f;
+ }
+ 
+--- a/src/frontend/numparam/xpressn.c
++++ b/src/frontend/numparam/xpressn.c
+@@ -6,6 +6,7 @@
+ 
+ #include "ngspice/ngspice.h"
+ 
++#include <math.h>
+ #include "general.h"
+ #include "numparam.h"
+ #include "ngspice/cpdefs.h"
+@@ -42,6 +43,180 @@
+ }
+ 
+ 
++/* ---------- MC agauss sigma-capture for mc_params_only mode ----------
++ * On first pass (capture enabled): records (nominal, abs_var, sigma, draw, name)
++ * for every agauss() call in deck order.  Subsequent seeds call
++ * mc_agauss_redraw() which redraws all N values in the same order
++ * without reloading the deck.  draw = raw N(0,1) value (sigma-normalised
++ * to unit variance, compatible with commercial SPICE MC output formats).
++ *
++ * The entry buffer is heap-allocated and grows by doubling, so there is no
++ * hard limit on the number of statistical parameters per circuit.
++ */
++#define MC_AGAUSS_INIT 256   /* initial buffer capacity; doubles on overflow */
++#define MC_NAME_MAX    512   /* max length for a single hierarchical name */
++
++typedef struct {
++    char  *name;     /* heap-allocated hierarchical param name, e.g. x1.x72.delvto */
++    double nominal;
++    double abs_var;
++    double sigma;
++    double draw;     /* raw N(0,1) draw (unit-variance, sigma-normalised) */
++} mc_agauss_entry_t;
++
++static mc_agauss_entry_t *s_mc_buf     = NULL;
++static int     s_mc_cap      = 0;  /* allocated capacity */
++static int     s_mc_count    = 0;  /* slots used during capture */
++static int     s_mc_total    = 0;  /* frozen after end_capture */
++static bool    s_mc_capture  = 0;
++static bool    s_mc_replay   = 0; /* replay mode: agauss() returns pre-stored draws */
++static int     s_mc_replay_idx = 0;
++static char    s_mc_cur_name[MC_NAME_MAX] = ""; /* set by nupa_assignment before formula() */
++static char    s_mc_elem_base[MC_NAME_MAX] = "";/* element path without type char (for M-lines) */
++static dico_t *s_mc_cur_dico = NULL;            /* dico at time of name set */
++
++/* Grow the buffer to hold at least one more entry. Returns 1 on success. */
++static int mc_agauss_buf_grow(void)
++{
++    int new_cap = (s_mc_cap == 0) ? MC_AGAUSS_INIT : s_mc_cap * 2;
++    mc_agauss_entry_t *p = realloc(s_mc_buf, (size_t)new_cap * sizeof(*p));
++    if (!p) {
++        fprintf(stderr, "mc_agauss: out of memory growing buffer to %d entries\n", new_cap);
++        return 0;
++    }
++    s_mc_buf = p;
++    s_mc_cap = new_cap;
++    return 1;
++}
++
++/* Free all per-entry name strings and the buffer itself. */
++static void mc_agauss_buf_free(void)
++{
++    int i;
++    for (i = 0; i < s_mc_count; i++) {
++        free(s_mc_buf[i].name);
++        s_mc_buf[i].name = NULL;
++    }
++    free(s_mc_buf);
++    s_mc_buf  = NULL;
++    s_mc_cap  = 0;
++    s_mc_count = 0;
++    s_mc_total = 0;
++}
++
++void mc_agauss_clear_func_table(void); /* forward declaration; defined below */
++
++/* Public entry point: release the capture buffer and all heap-allocated names.
++ * Called by runcoms.c after the mc_params_only loop completes. */
++void mc_agauss_free_buf(void) { mc_agauss_buf_free(); }
++
++void mc_agauss_start_capture(void) {
++    mc_agauss_buf_free();   /* release any previous run's names and buffer */
++    s_mc_capture = 1;
++    mc_agauss_clear_func_table();
++}
++
++int mc_agauss_end_capture(void) {
++    s_mc_capture = 0;
++    s_mc_total   = s_mc_count;
++    return s_mc_total;
++}
++
++void mc_agauss_start_replay(void) { s_mc_replay = 1; s_mc_replay_idx = 0; }
++void mc_agauss_end_replay(void)   { s_mc_replay = 0; }
++
++int         mc_agauss_get_count(void)     { return s_mc_total; }
++double      mc_agauss_get_draw(int i)     { return (i >= 0 && i < s_mc_total) ? s_mc_buf[i].draw    : 0.0; }
++const char *mc_agauss_get_name(int i)     { return (i >= 0 && i < s_mc_total && s_mc_buf[i].name) ? s_mc_buf[i].name : ""; }
++double      mc_agauss_get_nominal(int i)  { return (i >= 0 && i < s_mc_total) ? s_mc_buf[i].nominal : 0.0; }
++double      mc_agauss_get_abs_var(int i)  { return (i >= 0 && i < s_mc_total) ? s_mc_buf[i].abs_var : 0.0; }
++double      mc_agauss_get_sigma(int i)    { return (i >= 0 && i < s_mc_total) ? s_mc_buf[i].sigma   : 0.0; }
++
++/* Redraw all agauss values using a deterministic seed derived from seed_index.
++ * Uses ngspice's own RNG (srand -> TausSeed -> gauss1) so the sequence is
++ * consistent with any run that sets 'set rndseed=seed_index'.
++ * Every call with the same seed_index produces identical draws, making
++ * any row in mc_params.mc independently reproducible. */
++void mc_agauss_redraw_seeded(int seed_index) {
++    srand((unsigned int)seed_index);
++    TausSeed();
++    for (int i = 0; i < s_mc_total; i++)
++        s_mc_buf[i].draw = gauss1();
++}
++
++/* Legacy unseeded redraw (continuous RNG chain — not reproducible). */
++void mc_agauss_redraw(void) {
++    for (int i = 0; i < s_mc_total; i++)
++        s_mc_buf[i].draw = gauss1();
++}
++
++/* Build "x1.x72.delvto" from the dico instance-name stack + local param name. */
++static void
++mc_build_full_name(char *out, int out_size, dico_t *dico, const char *local_name)
++{
++    out[0] = '\0';
++    if (dico) {
++        int d;
++        for (d = 1; d <= dico->stack_depth; d++) {
++            if (dico->inst_name && dico->inst_name[d]) {
++                size_t rem = (size_t)out_size - strlen(out) - 1;
++                if (out[0] != '\0')
++                    strncat(out, ".", rem);
++                rem = (size_t)out_size - strlen(out) - 1;
++                strncat(out, dico->inst_name[d], rem);
++            }
++        }
++    }
++    if (local_name && local_name[0] != '\0') {
++        size_t rem = (size_t)out_size - strlen(out) - 1;
++        if (out[0] != '\0')
++            strncat(out, ".", rem);
++        rem = (size_t)out_size - strlen(out) - 1;
++        strncat(out, local_name, rem);
++    }
++}
++/* --------------------------------------------------------------------- */
++
++/* PDK funcname registry: maps (abs_var, sigma) → funcname so agauss() can
++ * append the parameter type name to the instance path, turning generic
++ * "x1.x1.x0.x1" names into "x1.x1.x0.x1.mis_vth". Populated by
++ * mc_agauss_register_func() called from inpcom.c when each agauss .func
++ * entry is created (before macro expansion inlines the name away). */
++#define MC_FUNC_TABLE_SIZE 256
++
++typedef struct {
++    double abs_var;
++    double sigma;
++    char   name[MC_NAME_MAX];
++} mc_func_entry_t;
++
++static mc_func_entry_t s_mc_func_table[MC_FUNC_TABLE_SIZE];
++static int             s_mc_func_count = 0;
++
++void mc_agauss_clear_func_table(void) { s_mc_func_count = 0; }
++
++void mc_agauss_register_func(const char *funcname, double abs_var, double sigma)
++{
++    if (!funcname || s_mc_func_count >= MC_FUNC_TABLE_SIZE)
++        return;
++    s_mc_func_table[s_mc_func_count].abs_var = abs_var;
++    s_mc_func_table[s_mc_func_count].sigma   = sigma;
++    strncpy(s_mc_func_table[s_mc_func_count].name, funcname, MC_NAME_MAX - 1);
++    s_mc_func_table[s_mc_func_count].name[MC_NAME_MAX - 1] = '\0';
++    s_mc_func_count++;
++}
++
++static const char *
++mc_lookup_funcname(double abs_var, double sigma)
++{
++    for (int i = 0; i < s_mc_func_count; i++) {
++        if (fabs(s_mc_func_table[i].abs_var - abs_var) < 1e-20 &&
++            fabs(s_mc_func_table[i].sigma   - sigma)   < 1e-20)
++            return s_mc_func_table[i].name;
++    }
++    return NULL;
++}
++
+ static double
+ agauss(double nominal_val, double abs_variation, double sigma)
+ {
+@@ -49,7 +224,38 @@
+     if (abs_variation <= 0 || sigma <= 0)
+         return nominal_val;
+     stdvar = abs_variation / sigma;
+-    return (nominal_val + stdvar * gauss1());
++    /* Replay mode: return the pre-stored draw for this slot instead of
++     * drawing a new value.  Used by monte_seed=K to reproduce a specific
++     * seed's circuit parameters without reseeding the global RNG mid-run. */
++    if (s_mc_replay && s_mc_replay_idx < s_mc_total)
++        return nominal_val + stdvar * s_mc_buf[s_mc_replay_idx++].draw;
++    double draw = gauss1();
++    if (s_mc_capture) {
++        int can_record = (s_mc_count < s_mc_cap) || mc_agauss_buf_grow();
++        if (can_record) {
++            char tmpname[MC_NAME_MAX];
++            mc_build_full_name(tmpname, MC_NAME_MAX, s_mc_cur_dico, s_mc_cur_name);
++            if (tmpname[0] == '\0')
++                snprintf(tmpname, MC_NAME_MAX, "agauss_%d", s_mc_count);
++            /* Append PDK parameter name if not already in tmpname.
++             * Turns "x1.x1.x0.x1" (raw instance path) into "x1.x1.x0.x1.mis_vth". */
++            const char *fn = mc_lookup_funcname(abs_variation, sigma);
++            if (fn && !strstr(tmpname, fn)) {
++                size_t cur = strlen(tmpname);
++                if (cur > 0 && cur < (size_t)MC_NAME_MAX - 1)
++                    strncat(tmpname, ".", (size_t)MC_NAME_MAX - cur - 1);
++                cur = strlen(tmpname);
++                strncat(tmpname, fn, (size_t)MC_NAME_MAX - cur - 1);
++            }
++            s_mc_buf[s_mc_count].name    = copy(tmpname); /* heap-allocate exact length */
++            s_mc_buf[s_mc_count].nominal = nominal_val;
++            s_mc_buf[s_mc_count].abs_var = abs_variation;
++            s_mc_buf[s_mc_count].sigma   = sigma;
++            s_mc_buf[s_mc_count].draw    = draw;
++            s_mc_count++;
++        }
++    }
++    return (nominal_val + stdvar * draw);
+ }
+ 
+ 
+@@ -1312,15 +1518,84 @@
+    anywhere we find a 25-char numstring in *lp, substitute it.
+ */
+ {
++    const char * const s_start = s;  /* save line start for backward scans */
+     const char * const s_end = s + strlen(s);
+     bool err = 0;
+ 
++    /* Set agauss name context.
++     * For B-elements: strip 'b' from expanded element name → full param path.
++     *   (e.g. "bmc_sig_vth" → name="mc_sig_vth", dico used for subckt prefix)
++     * For M-elements: strip 'm' → element path stored in s_mc_elem_base;
++     *   s_mc_cur_dico=NULL so mc_build_full_name uses only the local_name we set.
++     *   The per-{...} block below appends the model param key (e.g. "delvto").
++     * Other lines: dico stack only. */
++    if (s_mc_capture) {
++        const char *ep = s;
++        while (*ep && (unsigned char)*ep > ' ')
++            ep++;
++        size_t nlen = (size_t)(ep - s);
++        s_mc_elem_base[0] = '\0';
++        if (nlen > 1 && (*s == 'b' || *s == 'B')) {
++            size_t cplen = (nlen - 1 < (size_t)(MC_NAME_MAX - 1))
++                           ? nlen - 1 : (size_t)(MC_NAME_MAX - 1);
++            strncpy(s_mc_cur_name, s + 1, cplen);
++            s_mc_cur_name[cplen] = '\0';
++            s_mc_cur_dico = dico;
++        } else if (nlen > 1 && (*s == 'm' || *s == 'M')) {
++            /* M-element: the translated card line (*lp) has the full hierarchical
++             * element name in the form "m.x1.x526.x1.m0 ..." produced by
++             * translate_inst_name() in subckt.c.  Skip "m." (type + separator)
++             * to get "x1.x526.x1.m0" as the element base.  Fall back to the
++             * original 's' token if *lp is not in that format. */
++            const char *lp_tok = (lp && *lp) ? *lp : NULL;
++            const char *elem_start = NULL;
++            if (lp_tok && tolower_c(lp_tok[0]) == 'm' && lp_tok[1] == '.') {
++                elem_start = lp_tok + 2; /* skip "m." */
++            } else {
++                elem_start = (s[1] != '\0') ? s + 1 : s; /* fallback */
++            }
++            const char *elem_ep = elem_start;
++            while (*elem_ep && (unsigned char)*elem_ep > ' ') elem_ep++;
++            size_t elen = (size_t)(elem_ep - elem_start);
++            size_t cplen = (elen < (size_t)(MC_NAME_MAX - 1)) ? elen : (size_t)(MC_NAME_MAX - 1);
++            strncpy(s_mc_elem_base, elem_start, cplen);
++            s_mc_elem_base[cplen] = '\0';
++            s_mc_cur_name[0] = '\0';
++            s_mc_cur_dico = NULL; /* elem_base already carries full hierarchy */
++        } else {
++            s_mc_cur_dico = dico;
++        }
++    }
++
+     DS_CREATE(qstr, 200); /* temp result dynamic string */
+ 
+     while (s < s_end) {
+         char c = *s++;
+ 
+         if (c == '{') {
++            /* For M-element lines: build "elem_path.key" from the element base
++             * saved at function entry and the key immediately before '{'.
++             * E.g. "mx1.x526.m0 ... delvto={agauss(...)}" →
++             *       s_mc_elem_base="x1.x526.m0", key="delvto"
++             *       s_mc_cur_name="x1.x526.m0.delvto" */
++            if (s_mc_capture && (*s_start == 'm' || *s_start == 'M')) {
++                const char *p = s - 2; /* char just before '{' */
++                while (p >= s_start && (unsigned char)*p <= ' ') p--;
++                if (p >= s_start && *p == '=') {
++                    p--;
++                    while (p >= s_start && (unsigned char)*p <= ' ') p--;
++                    const char *key_end = p + 1;
++                    while (p > s_start &&
++                           (isalnum((unsigned char)*(p - 1)) || *(p - 1) == '_'))
++                        p--;
++                    size_t klen = (size_t)(key_end - p);
++                    if (klen > 0) {
++                        snprintf(s_mc_cur_name, MC_NAME_MAX, "%s.%.*s",
++                                 s_mc_elem_base, (int)klen, p);
++                    }
++                }
++            }
++
+             /* try ps expression syntax */
+             const char *kptr = s;
+             int nnest = 1;
+@@ -1364,6 +1639,11 @@
+ 
+  Lend:
+     ds_free(&qstr);
++    if (s_mc_capture) {
++        s_mc_cur_name[0]  = '\0';
++        s_mc_elem_base[0] = '\0';
++        s_mc_cur_dico     = NULL;
++    }
+     return err;
+ }
+ 
+@@ -1507,7 +1787,17 @@
+ 
+         tmp = ds_get_buf(&ustr);
+         if (dtype == NUPA_REAL) {
++            /* Fallback: set name from P-line param name in case agauss is called
++             * from a .param (not a .func) line that wasn't converted by
++             * inp_fix_agauss_in_param.  The main path is in nupa_substitute. */
++            if (s_mc_capture && s_mc_cur_name[0] == '\0') {
++                strncpy(s_mc_cur_name, t_p, MC_NAME_MAX - 1);
++                s_mc_cur_name[MC_NAME_MAX - 1] = '\0';
++                s_mc_cur_dico = dico;
++            }
+             rval = formula(dico, tmp, tmp + strlen(tmp), &error);
++            if (s_mc_capture && s_mc_cur_dico == dico)
++                s_mc_cur_name[0] = '\0';
+             if (error) {
+                 message(dico,
+                         " Formula() error.\n"
+--- a/src/frontend/runcoms.c
++++ b/src/frontend/runcoms.c
+@@ -11,6 +11,7 @@
+ #include "ngspice/ngspice.h"
+ #include "ngspice/cpdefs.h"
+ #include "ngspice/ftedefs.h"
++#include "ngspice/tskdefs.h"
+ #include "ngspice/ftedev.h"
+ #include "ngspice/ftedebug.h"
+ #include "ngspice/dvec.h"
+@@ -38,6 +39,7 @@
+ extern struct dbcomm *dbs;
+ extern void NIresetwarnmsg(void);
+ extern wordlist* sourceinfo;
++extern void inp_source_recent(void);
+ 
+ /* Routines for the commands op, tran, ac, dc, listing, device, state,
+  * resume, stop, trace, run, end.  Op, tran, ac, and dc cause the action
+@@ -330,26 +332,215 @@
+         /* Do a run of the circuit */
+     }
+     else {
+-        err = if_run(ft_curckt->ci_ckt, what, ww, ft_curckt->ci_symtab);
+-        if (err == 1) {
+-            /* The circuit was interrupted somewhere. */
+-            fprintf(cp_err, "%s simulation interrupted\n", what);
+-            err = 0;
+-        }
+-        else if (err == 2) {
+-            fprintf(cp_err, "%s simulation(s) aborted\n", what);
+-            ft_curckt->ci_inprogress = FALSE;
+-            err = 1;
+-            cp_vset("sim_status", CP_NUM, &err);
++        /* --- Monte Carlo sweep support ---
++         * "sweep monte=N" on any analysis card → N MC iterations.
++         * mc_params_only=1 → fast sigma-dump path: captures raw agauss N(0,1)
++         * draws from numparam without running any circuit analysis.  For seeds
++         * 2..N only mc_agauss_redraw() is called (no deck reload), making pool
++         * generation orders of magnitude faster than the full-sim path. */
++        int mc_monte_n = 1;
++        bool mc_params_only = FALSE;
++        int mc_seed_replay = 0;
++
++        if (eq(what, "run") && ft_curckt && ft_curckt->ci_defTask) {
++            TSKtask *mc_tsk = ft_curckt->ci_defTask;
++            if (mc_tsk->TSKmonteN > 1) {
++                mc_monte_n = mc_tsk->TSKmonteN;
++                mc_params_only = mc_tsk->TSKmcParamsOnly ? TRUE : FALSE;
++                fprintf(cp_out, "MC sweep: %d iterations%s\n",
++                        mc_monte_n,
++                        mc_params_only ? " (sigma-dump mode → mc_params.mc)" : "");
++            }
++            if (mc_tsk->TSKmonteSeed > 0)
++                mc_seed_replay = mc_tsk->TSKmonteSeed;
+         }
+-        else if (err == 3) {
+-            fprintf(cp_err, "%s simulation not started\n", what);
++
++        if (mc_params_only) {
++            /* ---- Fast agauss sigma-dump: no circuit solve ---- */
++            FILE *mc_fp = fopen("mc_params.mc", "w");
++            if (!mc_fp) {
++                fprintf(cp_err, "Error: cannot open mc_params.mc for writing\n");
++                err = 1;
++            } else {
++                /* Reload deck with capture enabled → records param names & count.
++                 * The draws from this reload are discarded; all data rows use
++                 * mc_agauss_redraw_seeded(K) so every row is independently
++                 * reproducible via .options monte_seed=K. */
++                int n_ag;
++                mc_agauss_start_capture();
++                com_remcirc(NULL);
++                inp_source_recent();
++                n_ag = mc_agauss_end_capture();
++
++                if (n_ag == 0) {
++                    fprintf(cp_err,
++                            "Warning: no agauss() params captured — is mc_params_only "
++                            "appropriate for this deck?\n");
++                    err = 1;
++                } else {
++                    int i, mc_iter;
++                    fprintf(cp_out, "  Captured %d agauss parameters.\n", n_ag);
++
++                    /* Data header: "run <param_name_0> <param_name_1> ..." */
++                    fprintf(mc_fp, "run");
++                    for (i = 0; i < n_ag; i++)
++                        fprintf(mc_fp, " %s", mc_agauss_get_name(i));
++                    fprintf(mc_fp, "\n");
++
++                    /* Rows 2..mc_monte_n+1: seeded redraws.
++                     * Row k+2 in this file uses seed k+2, matching iteration k
++                     * of a full-circuit "sweep monte=mc_monte_n" run which also
++                     * uses mc_agauss_redraw_seeded(k+2).  The two modes produce
++                     * identical parameter draws when given the same sweep count. */
++                    for (mc_iter = 0; mc_iter < mc_monte_n; mc_iter++) {
++                        mc_agauss_redraw_seeded(mc_iter + 2);
++                        fprintf(mc_fp, "%d", mc_iter + 2);
++                        for (i = 0; i < n_ag; i++)
++                            fprintf(mc_fp, " %.8g", mc_agauss_get_draw(i));
++                        fprintf(mc_fp, "\n");
++                        if ((mc_iter % 100000) == 0)
++                            fprintf(cp_out, "  MC sigma dump: %d / %d\n",
++                                    mc_iter, mc_monte_n);
++                    }
++
++                    fprintf(cp_out,
++                            "  MC sigma dump complete: %d seeds × %d params → mc_params.mc\n",
++                            mc_monte_n, n_ag);
++                }
++                fclose(mc_fp);
++            }
++            mc_agauss_free_buf(); /* release heap-allocated names and buffer */
+             ft_curckt->ci_inprogress = FALSE;
+-            err = 1;
+-            cp_vset("sim_status", CP_NUM, &err);
+-        }
+-        else {
++        } else if (mc_seed_replay > 0) {
++            /* ---- Reproduce a specific seed for a full circuit simulation ----
++             * 1. Capture pass: reload deck to get param names/count/order.
++             * 2. Seeded redraw: fill buffer with the exact N(0,1) draws for
++             *    this seed index (same as row mc_seed_replay in mc_params.mc).
++             * 3. Replay pass: reload deck with replay enabled so agauss()
++             *    returns pre-stored values → run circuit solve. */
++            fprintf(cp_out, "MC seed replay: running full simulation for seed %d\n",
++                    mc_seed_replay);
++
++            /* Pass 1: capture */
++            mc_agauss_start_capture();
++            com_remcirc(NULL);
++            inp_source_recent();
++            int n_ag = mc_agauss_end_capture();
++
++            if (n_ag == 0) {
++                fprintf(cp_err,
++                        "Warning: no agauss() params found — monte_seed requires "
++                        "a deck with agauss() parameters.\n");
++                err = 1;
++            } else {
++                fprintf(cp_out, "  Found %d agauss parameters; reproducing seed %d.\n",
++                        n_ag, mc_seed_replay);
++
++                /* Fill buffer with the seeded draws */
++                mc_agauss_redraw_seeded(mc_seed_replay);
++
++                /* Pass 2: reload with replay, then solve */
++                mc_agauss_start_replay();
++                com_remcirc(NULL);
++                inp_source_recent();
++                err = if_run(ft_curckt->ci_ckt, what, ww, ft_curckt->ci_symtab);
++                mc_agauss_end_replay();
++
++                if (err == 1) {
++                    fprintf(cp_err, "%s simulation interrupted\n", what);
++                    err = 0;
++                } else if (err >= 2) {
++                    fprintf(cp_err, "%s simulation aborted\n", what);
++                    ft_curckt->ci_inprogress = FALSE;
++                    err = 1;
++                    cp_vset("sim_status", CP_NUM, &err);
++                }
++            }
+             ft_curckt->ci_inprogress = FALSE;
++        } else {
++            /* ---- Normal MC simulation (sweep monte=N) or single run ----
++             * When N > 1: one capture pass identifies param count/order, then
++             * each iteration uses mc_agauss_redraw_seeded(k+2) + replay so
++             * iteration k draws exactly the same values as row k+2 of
++             * mc_params.mc from an mc_params_only=1 run with the same N.
++             * When N == 1 (single run): original random-draw behaviour. */
++            int mc_iter;
++            if (mc_monte_n > 1) {
++                int n_ag;
++                mc_agauss_start_capture();
++                com_remcirc(NULL);
++                inp_source_recent();
++                n_ag = mc_agauss_end_capture();
++
++                if (n_ag > 0) {
++                    for (mc_iter = 0; mc_iter < mc_monte_n; mc_iter++) {
++                        mc_agauss_redraw_seeded(mc_iter + 2);
++                        mc_agauss_start_replay();
++                        com_remcirc(NULL);
++                        inp_source_recent();
++                        err = if_run(ft_curckt->ci_ckt, what, ww, ft_curckt->ci_symtab);
++                        mc_agauss_end_replay();
++                        if (err == 1) {
++                            fprintf(cp_err, "%s simulation interrupted\n", what);
++                            err = 0;
++                            break;
++                        } else if (err == 2) {
++                            fprintf(cp_err, "%s simulation(s) aborted\n", what);
++                            ft_curckt->ci_inprogress = FALSE;
++                            err = 1;
++                            cp_vset("sim_status", CP_NUM, &err);
++                            break;
++                        } else if (err == 3) {
++                            fprintf(cp_err, "%s simulation not started\n", what);
++                            ft_curckt->ci_inprogress = FALSE;
++                            err = 1;
++                            cp_vset("sim_status", CP_NUM, &err);
++                            break;
++                        }
++                        if ((mc_iter % 1000) == 0)
++                            fprintf(cp_out, "  MC progress: %d / %d\n",
++                                    mc_iter + 1, mc_monte_n);
++                    }
++                    mc_agauss_free_buf();
++                } else {
++                    /* No agauss params — plain sweep without seeding */
++                    for (mc_iter = 0; mc_iter < mc_monte_n; mc_iter++) {
++                        com_remcirc(NULL);
++                        inp_source_recent();
++                        err = if_run(ft_curckt->ci_ckt, what, ww, ft_curckt->ci_symtab);
++                        if (err == 1) {
++                            fprintf(cp_err, "%s simulation interrupted\n", what);
++                            err = 0;
++                            break;
++                        } else if (err >= 2) {
++                            fprintf(cp_err, "%s simulation(s) aborted\n", what);
++                            ft_curckt->ci_inprogress = FALSE;
++                            err = 1;
++                            cp_vset("sim_status", CP_NUM, &err);
++                            break;
++                        }
++                    }
++                }
++            } else {
++                /* Single run */
++                err = if_run(ft_curckt->ci_ckt, what, ww, ft_curckt->ci_symtab);
++                if (err == 1) {
++                    fprintf(cp_err, "%s simulation interrupted\n", what);
++                    err = 0;
++                } else if (err == 2) {
++                    fprintf(cp_err, "%s simulation(s) aborted\n", what);
++                    ft_curckt->ci_inprogress = FALSE;
++                    err = 1;
++                    cp_vset("sim_status", CP_NUM, &err);
++                } else if (err == 3) {
++                    fprintf(cp_err, "%s simulation not started\n", what);
++                    ft_curckt->ci_inprogress = FALSE;
++                    err = 1;
++                    cp_vset("sim_status", CP_NUM, &err);
++                }
++            }
++            if (!err)
++                ft_curckt->ci_inprogress = FALSE;
+         }
+     }
+     /* close the rawfile */

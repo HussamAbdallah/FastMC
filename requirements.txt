@@ -1,0 +1,12 @@
+# Pinned for reproducibility and supply-chain safety (V4).
+# To upgrade: edit requirements.in and re-run:
+#   pip-compile --generate-hashes requirements.in
+# For hash-verified installs in CI:
+#   pip install --require-hashes -r requirements.txt
+numpy==1.26.4
+scipy==1.13.1
+pandas==2.2.2
+scikit-learn==1.5.2
+tensorflow==2.17.0
+matplotlib==3.9.2
+joblib==1.4.2
